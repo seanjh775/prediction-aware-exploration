@@ -1,9 +1,11 @@
 # GAN reliability branch handoff
 
-Goal: estimate conditional ambiguity in unseen occupancy maps using multiple
-samples from one latent-conditioned generator, not a model ensemble or the
-critic score itself. Calibration and meaningful structural diversity remain
-unproven; noise sensitivity alone is not aleatoric uncertainty.
+Current goal: estimate conditional occupancy ambiguity in one pass, without an
+ensemble or comparing generated map samples. The approved baseline fine-tunes
+pretrained Big LaMa with one occupancy-logit output and masked unweighted BCE.
+Probability variance/entropy supplies uncertainty; calibration remains unproven.
+See `probabilistic_lama.md`. The earlier latent WGAN code is retained but is not
+used by this baseline.
 
 Implemented:
 
@@ -43,20 +45,19 @@ scaling up dataset generation. The revised preview still needs user review.
 
 Next work:
 
-1. Review the preview in a local image viewer or VS Code.
+1. Run a substantive probabilistic Big LaMa fine-tuning experiment after the
+   single-step smoke check. Inspect NLL, Brier, calibration and occupied IoU on
+   validation maps before any final test evaluation. No full run has started.
 2. Review `docs/pilot_review/README.md` for the pilot sample gallery and coverage
    results. Generation and validation are documented in `docs/masked_pilot.md`.
    The full NPZ dataset stays under `data/kth_masked_pilot_v1/` in the cloud,
-   excluded from Git. Build a paired training dataset loader next, preserving
-   the source map split and aligned arrays. The old saved run on `50015848` is
+   excluded from Git. The paired loader and probabilistic runner now exist,
+   preserving the source map split and aligned arrays. The old saved run on `50015848` is
    validation-only. One cropped test map needs an explicit image-extent virtual
    boundary for routing; inspect its route statistics before broader use.
-3. Add a checkpointed/logged critic-training runner and run a short frozen-LaMa
-   smoke test. No WGAN training run has started.
-4. Connect joint generator/critic updates and an explicit latent-diversity
-   objective; the current LaMa adversarial training loop is still unchanged.
-5. Evaluate sample plausibility, diversity, and occupancy uncertainty calibration
-   on held-out maps before using uncertainty for planning.
+3. Evaluate single-pass probabilities and uncertainty before connecting them to
+   planning. A critic is not required for the approved probabilistic baseline.
+   WGAN training and latent-diversity objectives are deferred.
 
 Checkpoints and generated data are not tracked by Git. The cloud environment
 uses `/workspace/setup-tools/pipe` (Python 3.6) with extra simulation dependencies.
