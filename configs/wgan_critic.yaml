@@ -1,0 +1,13 @@
+# Standalone critic settings; this is not a LaMa Hydra training config.
+map_split: configs/critic_map_split.json
+critic:
+  image_channels: 3
+  base_channels: 64
+  num_layers: 4
+  max_channels: 512
+optimizer:
+  lr: 0.0001
+  betas: [0.0, 0.9]
+training:
+  gradient_penalty_weight: 10.0
+  critic_steps_per_generator_step: 5

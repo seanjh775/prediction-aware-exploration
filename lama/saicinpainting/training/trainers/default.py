@@ -67,7 +67,14 @@ class DefaultInpaintingTrainingModule(BaseInpaintingTrainingModule):
         if self.concat_mask:
             masked_img = torch.cat([masked_img, mask], dim=1)
 
-        batch['predicted_image'] = self.generator(masked_img)
+        if getattr(self.generator, 'latent_dim', 0):
+            if not self.concat_mask or self.add_noise_kwargs is not None:
+                raise ValueError('Latent conditioning requires concat_mask=True and add_noise_kwargs=None')
+            batch['predicted_image'] = self.generator(masked_img, latent=batch.get('latent'))
+        else:
+            if batch.get('latent') is not None:
+                raise ValueError('Enable generator.latent_dim before supplying batch latent')
+            batch['predicted_image'] = self.generator(masked_img)
         batch['inpainted'] = mask * batch['predicted_image'] + (1 - mask) * batch['image']
 
         if self.fake_fakes_proba > 1e-3:

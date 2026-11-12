@@ -308,9 +308,21 @@ class FFCResNetGenerator(nn.Module):
                  up_norm_layer=nn.BatchNorm2d, up_activation=nn.ReLU(True),
                  init_conv_kwargs={}, downsample_conv_kwargs={}, resnet_conv_kwargs={},
                  spatial_transform_layers=None, spatial_transform_kwargs={},
-                 add_out_act=True, max_features=1024, out_ffc=False, out_ffc_kwargs={}):
+                 add_out_act=True, max_features=1024, out_ffc=False, out_ffc_kwargs={},
+                 latent_dim=0, latent_grid_size=8, latent_strength=0.1):
         assert (n_blocks >= 0)
         super().__init__()
+
+        if latent_dim < 0 or latent_grid_size < 1 or latent_strength < 0:
+            raise ValueError('Invalid latent dimension, grid size, or strength')
+        if latent_dim and input_nc != output_nc + 1:
+            raise ValueError('Latent conditioning requires image channels followed by one mask channel')
+        self.latent_dim = latent_dim
+        self.latent_grid_size = latent_grid_size
+        self.latent_strength = latent_strength
+        self.latent_channels = output_nc
+        if latent_dim:
+            self.latent_projection = nn.Linear(latent_dim, output_nc * latent_grid_size ** 2, bias=False)
 
         model = [nn.ReflectionPad2d(3),
                  FFC_BN_ACT(input_nc, ngf, kernel_size=7, padding=0, norm_layer=norm_layer,
@@ -363,7 +375,23 @@ class FFCResNetGenerator(nn.Module):
             model.append(get_activation('tanh' if add_out_act is True else add_out_act))
         self.model = nn.Sequential(*model)
 
-    def forward(self, input):
+    def forward(self, input, latent=None):
+        if self.latent_dim:
+            if latent is None:
+                latent = torch.randn(input.shape[0], self.latent_dim,
+                                     device=input.device, dtype=input.dtype)
+            if latent.shape != (input.shape[0], self.latent_dim):
+                raise ValueError('latent must have shape (batch_size, latent_dim)')
+            if latent.device != input.device or latent.dtype != input.dtype:
+                raise ValueError('latent must match the input device and dtype')
+            noise = self.latent_projection(latent).reshape(
+                input.shape[0], self.latent_channels, self.latent_grid_size, self.latent_grid_size)
+            noise = F.interpolate(noise, size=input.shape[-2:], mode='bilinear', align_corners=False)
+            mask = input[:, -1:]
+            image = input[:, :-1] + self.latent_strength * torch.tanh(noise) * mask
+            input = torch.cat([image, mask], dim=1)
+        elif latent is not None:
+            raise ValueError('Enable latent_dim before supplying a latent vector')
         return self.model(input)
 
 

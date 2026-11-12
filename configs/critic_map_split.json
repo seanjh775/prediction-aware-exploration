@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "dataset_root": "kth_test_maps",
+  "seed": 0,
+  "assignment": "manual",
+  "notes": [
+    "Fixed 10/2/2 pilot split; these maps were previously designated test maps.",
+    "Related-looking map identifiers are kept together conservatively. Building membership has not been verified from authoritative metadata.",
+    "All observations, crops, augmentations, and generated completions inherit their source map split.",
+    "The existing exploration run on 50015848 belongs to validation and must not be used for gradient updates.",
+    "Generator training overlap with these maps has not been independently verified."
+  ],
+  "train": [
+    "50010535_PLAN1",
+    "50010535_PLAN2",
+    "50010536_PLAN3",
+    "50052748",
+    "50052749",
+    "50052750",
+    "50052751",
+    "50052752",
+    "50052753",
+    "50052754"
+  ],
+  "validation": ["50015847", "50015848"],
+  "test": ["50037764_PLAN1", "50037765_PLAN3"]
+}

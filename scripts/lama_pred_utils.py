@@ -26,10 +26,19 @@ def convert_obsimg_to_model_input(obs_img, map_transform, device):
     return input_batch, mask
 
 # Visualization
-def load_lama_model(model_path, checkpoint_name='best.ckpt', device='cuda'):
+def load_lama_model(model_path, checkpoint_name='best.ckpt', device='cuda', latent_kwargs=None):
     train_config_path = os.path.join(model_path, 'config.yaml')
     with open(train_config_path, 'r') as f:
         train_config = OmegaConf.create(yaml.safe_load(f))
+
+    if latent_kwargs is not None:
+        allowed = {'latent_dim', 'latent_grid_size', 'latent_strength'}
+        if set(latent_kwargs) - allowed:
+            raise ValueError('Unexpected latent configuration key')
+        if train_config.generator.kind != 'ffc_resnet':
+            raise ValueError('Latent conditioning is implemented for ffc_resnet')
+        for key, value in latent_kwargs.items():
+            train_config.generator[key] = value
     
     checkpoint_path = os.path.join(model_path, 'models', checkpoint_name)
     train_config.training_model.predict_only = True
