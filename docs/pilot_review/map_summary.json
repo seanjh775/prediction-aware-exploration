@@ -1,0 +1,842 @@
+[
+  {
+    "map_id": "50010535_PLAN1",
+    "split": "train",
+    "samples": 27,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 242492981,
+        "start": [
+          90,
+          940
+        ],
+        "scans": 400,
+        "final_coverage": 0.7964477135987332,
+        "samples": 7,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 242492982,
+        "start": [
+          190,
+          610
+        ],
+        "scans": 400,
+        "final_coverage": 0.6700270361978568,
+        "samples": 6,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 242492983,
+        "start": [
+          208,
+          102
+        ],
+        "scans": 400,
+        "final_coverage": 0.7798757283537108,
+        "samples": 7,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 242492984,
+        "start": [
+          98,
+          26
+        ],
+        "scans": 400,
+        "final_coverage": 0.7723158090609573,
+        "samples": 7,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "c402a0016ef6c067c0c75e0fbfce6781bbabed3df174b4689c1eb25fbcf15698",
+      "valid_space.npy": "a025452732c5ccb7b73a468481f9deb1e89c327c81369982adb12f300de06b34"
+    }
+  },
+  {
+    "map_id": "50010535_PLAN2",
+    "split": "train",
+    "samples": 23,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 3764244338,
+        "start": [
+          137,
+          968
+        ],
+        "scans": 400,
+        "final_coverage": 0.7381542443705554,
+        "samples": 7,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 3764244339,
+        "start": [
+          21,
+          389
+        ],
+        "scans": 400,
+        "final_coverage": 0.5073349717409114,
+        "samples": 5,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 3764244340,
+        "start": [
+          14,
+          58
+        ],
+        "scans": 400,
+        "final_coverage": 0.7735865292607202,
+        "samples": 6,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 3764244341,
+        "start": [
+          202,
+          521
+        ],
+        "scans": 400,
+        "final_coverage": 0.5599705361998581,
+        "samples": 5,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "af1e58af6c8411c0c255113a38447ae3d16c7c66ff286c8aaf37f53910f75f31",
+      "valid_space.npy": "8719d86a64940aa84dcbbfb8ced500875848b3db9a5f1d119b6dc7b09cb1ab66"
+    }
+  },
+  {
+    "map_id": "50010536_PLAN3",
+    "split": "train",
+    "samples": 21,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 215606915,
+        "start": [
+          162,
+          532
+        ],
+        "scans": 400,
+        "final_coverage": 0.6341128315323581,
+        "samples": 6,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 215606916,
+        "start": [
+          264,
+          643
+        ],
+        "scans": 400,
+        "final_coverage": 0.5446187051043742,
+        "samples": 5,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 215606917,
+        "start": [
+          21,
+          486
+        ],
+        "scans": 400,
+        "final_coverage": 0.45884696385530716,
+        "samples": 4,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 215606918,
+        "start": [
+          242,
+          981
+        ],
+        "scans": 400,
+        "final_coverage": 0.6029075488830468,
+        "samples": 6,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "0fc1e93fcb917d95def5b366e6c5ac5a1389f43e0bf6ba87263a8335d1923216",
+      "valid_space.npy": "2501c3338366fbf8ec8ca1d7cba498e0c2a0084b252a2452984d0b45673c2ca0"
+    }
+  },
+  {
+    "map_id": "50052748",
+    "split": "train",
+    "samples": 38,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 3442432138,
+        "start": [
+          41,
+          70
+        ],
+        "scans": 337,
+        "final_coverage": 0.9507035036090248,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 1,
+        "seed": 3442432139,
+        "start": [
+          27,
+          168
+        ],
+        "scans": 400,
+        "final_coverage": 0.9406011625012811,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 3442432140,
+        "start": [
+          153,
+          409
+        ],
+        "scans": 371,
+        "final_coverage": 0.9521529699418749,
+        "samples": 9,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 3,
+        "seed": 3442432141,
+        "start": [
+          58,
+          8
+        ],
+        "scans": 300,
+        "final_coverage": 0.9507327857571631,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "4772aa6452a888fb72d667827a57afc96ce4f11f88d290cfedee424d3c9938e9",
+      "valid_space.npy": "8ee75bf5930f3acf8586418f5b9d6c0d7d5c565d4bd7118c2bf2e4813fc5c4ae"
+    }
+  },
+  {
+    "map_id": "50052749",
+    "split": "train",
+    "samples": 31,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 646551849,
+        "start": [
+          280,
+          210
+        ],
+        "scans": 400,
+        "final_coverage": 0.9020011852121985,
+        "samples": 8,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 646551850,
+        "start": [
+          144,
+          189
+        ],
+        "scans": 400,
+        "final_coverage": 0.8800838765555911,
+        "samples": 7,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 646551851,
+        "start": [
+          272,
+          123
+        ],
+        "scans": 400,
+        "final_coverage": 0.9010347814195195,
+        "samples": 8,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 646551852,
+        "start": [
+          113,
+          330
+        ],
+        "scans": 400,
+        "final_coverage": 0.8665086383735242,
+        "samples": 8,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "39db8db028cac26f10a35991a6f55d179e826f0e81b92cba3f8bae49f9bf1e39",
+      "valid_space.npy": "14ee65078ec5e77c09868acad41d7c613c07b4e726fcea8e586196125fa68b80"
+    }
+  },
+  {
+    "map_id": "50052750",
+    "split": "train",
+    "samples": 36,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 962944406,
+        "start": [
+          95,
+          75
+        ],
+        "scans": 400,
+        "final_coverage": 0.9172790202342918,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 962944407,
+        "start": [
+          297,
+          378
+        ],
+        "scans": 400,
+        "final_coverage": 0.9286386226482073,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 962944408,
+        "start": [
+          173,
+          317
+        ],
+        "scans": 400,
+        "final_coverage": 0.9316471423500178,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 962944409,
+        "start": [
+          311,
+          327
+        ],
+        "scans": 400,
+        "final_coverage": 0.9345225417110401,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "254d532173ef046ca9168bfca60bdfa1d9628b88501b3fcad367d34c464570d5",
+      "valid_space.npy": "432aff34c40769ecef4ae0f568a060c6a2d2b3a9aa5c268bcd0972cafad1f7d1"
+    }
+  },
+  {
+    "map_id": "50052751",
+    "split": "train",
+    "samples": 38,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 429297655,
+        "start": [
+          65,
+          129
+        ],
+        "scans": 369,
+        "final_coverage": 0.9519591290810622,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 1,
+        "seed": 429297656,
+        "start": [
+          113,
+          91
+        ],
+        "scans": 395,
+        "final_coverage": 0.9501611594711338,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 2,
+        "seed": 429297657,
+        "start": [
+          29,
+          322
+        ],
+        "scans": 381,
+        "final_coverage": 0.9502488653057645,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 3,
+        "seed": 429297658,
+        "start": [
+          43,
+          256
+        ],
+        "scans": 400,
+        "final_coverage": 0.9423114872716908,
+        "samples": 8,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "0da308b850adaf5d2baa0787cb6eed3d9cdb31e93f3562b9561bb9592fdcc07b",
+      "valid_space.npy": "a4f18fbc7682742cc32461a62ce138358084863eabbc54df5554bf4c3fe30edd"
+    }
+  },
+  {
+    "map_id": "50052752",
+    "split": "train",
+    "samples": 40,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 1293477914,
+        "start": [
+          82,
+          73
+        ],
+        "scans": 309,
+        "final_coverage": 0.9500407875300395,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 1,
+        "seed": 1293477915,
+        "start": [
+          14,
+          227
+        ],
+        "scans": 270,
+        "final_coverage": 0.950966774698503,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 2,
+        "seed": 1293477916,
+        "start": [
+          15,
+          55
+        ],
+        "scans": 257,
+        "final_coverage": 0.9533258372467315,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 3,
+        "seed": 1293477917,
+        "start": [
+          13,
+          304
+        ],
+        "scans": 274,
+        "final_coverage": 0.9510770112661772,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "41ac4e67b4bb8ebdae3d0186f23fd2336b4d37ca5876fc26745bf4ec8d9075f4",
+      "valid_space.npy": "4f64bfb220c6a497b6e8e9adafebaac1ca0c39e241c382ea94a5469ebeb8ab1d"
+    }
+  },
+  {
+    "map_id": "50052753",
+    "split": "train",
+    "samples": 39,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 1378274995,
+        "start": [
+          120,
+          29
+        ],
+        "scans": 317,
+        "final_coverage": 0.9500132007392414,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 1,
+        "seed": 1378274996,
+        "start": [
+          14,
+          289
+        ],
+        "scans": 376,
+        "final_coverage": 0.9511572648068292,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      },
+      {
+        "trajectory": 2,
+        "seed": 1378274997,
+        "start": [
+          25,
+          117
+        ],
+        "scans": 400,
+        "final_coverage": 0.9404426647892282,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 1378274998,
+        "start": [
+          38,
+          33
+        ],
+        "scans": 366,
+        "final_coverage": 0.9507832438616562,
+        "samples": 10,
+        "stop_reason": "coverage_target"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "2f3e2542d4a63a0e411f384482c8742ba946cc2b2bf4fe3403ae19a7aadb7749",
+      "valid_space.npy": "db36f9a922188faacc043b515145943028057f701d7183585628344905c24ed3"
+    }
+  },
+  {
+    "map_id": "50052754",
+    "split": "train",
+    "samples": 35,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 1775911487,
+        "start": [
+          27,
+          330
+        ],
+        "scans": 400,
+        "final_coverage": 0.9476716482564436,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 1775911488,
+        "start": [
+          5,
+          153
+        ],
+        "scans": 400,
+        "final_coverage": 0.9475200346545376,
+        "samples": 8,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 1775911489,
+        "start": [
+          36,
+          76
+        ],
+        "scans": 400,
+        "final_coverage": 0.9459172622915313,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 1775911490,
+        "start": [
+          61,
+          211
+        ],
+        "scans": 400,
+        "final_coverage": 0.9430149447693308,
+        "samples": 9,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "afc40cd86c498fe34aee977a5dcfebf87b4034d1c1249e935c145fe0904b83d4",
+      "valid_space.npy": "43435da8a466a11115f01ea7db7a556dfaf1bf036236372ba2e708b5a9ecbb68"
+    }
+  },
+  {
+    "map_id": "50015847",
+    "split": "validation",
+    "samples": 21,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 361403743,
+        "start": [
+          11,
+          363
+        ],
+        "scans": 400,
+        "final_coverage": 0.5045551098430466,
+        "samples": 5,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 361403744,
+        "start": [
+          256,
+          912
+        ],
+        "scans": 400,
+        "final_coverage": 0.5085908217422207,
+        "samples": 5,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 361403745,
+        "start": [
+          66,
+          713
+        ],
+        "scans": 400,
+        "final_coverage": 0.647123264370516,
+        "samples": 6,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 361403746,
+        "start": [
+          174,
+          1007
+        ],
+        "scans": 400,
+        "final_coverage": 0.5636956024307419,
+        "samples": 5,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "2a171bb520b62429f49690a0401e297fe617185e7a4c50443772e52df7da5422",
+      "valid_space.npy": "0553333a3c3e2a4c6898e5fd98246d246bee119c911e51a427e7fbf2fa86d237"
+    }
+  },
+  {
+    "map_id": "50015848",
+    "split": "validation",
+    "samples": 15,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 3152579794,
+        "start": [
+          129,
+          365
+        ],
+        "scans": 400,
+        "final_coverage": 0.521708713996792,
+        "samples": 5,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 3152579795,
+        "start": [
+          292,
+          832
+        ],
+        "scans": 400,
+        "final_coverage": 0.37682195411116537,
+        "samples": 3,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 3152579796,
+        "start": [
+          377,
+          406
+        ],
+        "scans": 400,
+        "final_coverage": 0.38882374991282515,
+        "samples": 3,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 3152579797,
+        "start": [
+          137,
+          111
+        ],
+        "scans": 400,
+        "final_coverage": 0.42310961364111865,
+        "samples": 4,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "0c7f8bb52ff6cae8d30d831220692081515e71d133aa6171b165231c84c55d2b",
+      "valid_space.npy": "5526c9e7572357d0ce4e627d91e1fa073cd2b1863587450f4ffce52a1ba3ad98"
+    }
+  },
+  {
+    "map_id": "50037764_PLAN1",
+    "split": "test",
+    "samples": 27,
+    "navigation_boundary": "original_map_extent_virtual_boundary",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 471852091,
+        "start": [
+          70,
+          779
+        ],
+        "scans": 400,
+        "final_coverage": 0.8085508081556488,
+        "samples": 8,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 471852092,
+        "start": [
+          67,
+          517
+        ],
+        "scans": 400,
+        "final_coverage": 0.5767459729425647,
+        "samples": 5,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 471852093,
+        "start": [
+          108,
+          1138
+        ],
+        "scans": 400,
+        "final_coverage": 0.7816909524985594,
+        "samples": 7,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 471852094,
+        "start": [
+          37,
+          234
+        ],
+        "scans": 400,
+        "final_coverage": 0.7936609862517494,
+        "samples": 7,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "e579d7f7e578cfda1e08635a2fb7b90dbdeba024f9af5d025818b4c8edccf747",
+      "valid_space.npy": "83d62c3be115045a50d6123cc8adcc83df0f8e2348c9e6f7d064c10297282efb"
+    }
+  },
+  {
+    "map_id": "50037765_PLAN3",
+    "split": "test",
+    "samples": 29,
+    "navigation_boundary": "closed_occupancy_component",
+    "trajectories": [
+      {
+        "trajectory": 0,
+        "seed": 76640630,
+        "start": [
+          114,
+          51
+        ],
+        "scans": 400,
+        "final_coverage": 0.8572015436325159,
+        "samples": 8,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 1,
+        "seed": 76640631,
+        "start": [
+          98,
+          1022
+        ],
+        "scans": 400,
+        "final_coverage": 0.8317689530685921,
+        "samples": 8,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 2,
+        "seed": 76640632,
+        "start": [
+          202,
+          299
+        ],
+        "scans": 400,
+        "final_coverage": 0.7371031993028756,
+        "samples": 7,
+        "stop_reason": "scan_budget"
+      },
+      {
+        "trajectory": 3,
+        "seed": 76640633,
+        "start": [
+          130,
+          342
+        ],
+        "scans": 400,
+        "final_coverage": 0.6831009585459977,
+        "samples": 6,
+        "stop_reason": "scan_budget"
+      }
+    ],
+    "source_sha256": {
+      "occ_map.npy": "d2da0d28a181cd46c247dcaff9599219e680cc9b8033c0df5e2ecda7b2098713",
+      "valid_space.npy": "db93688949016e28236385fdbfd1aa825f8b2591b79c4b475d98a4c3ccfb1ff3"
+    }
+  }
+]

@@ -33,6 +33,19 @@ class RoutingTest(unittest.TestCase):
         self.assertTrue(navigation_region(occupancy, valid, 0)[10, 20])
         self.assertFalse(navigation_region(occupancy, valid, 1)[10, 20])
 
+    def test_explicit_domain_bounds_a_cropped_open_map(self):
+        occupancy = np.zeros((20, 30))
+        valid = np.zeros_like(occupancy)
+        valid[7:12, 10:20] = 1
+        with self.assertRaises(ValueError):
+            navigation_region(occupancy, valid, 1)
+        domain = np.zeros_like(occupancy, dtype=bool)
+        domain[3:17, 3:27] = True
+        region = navigation_region(occupancy, valid, 1, domain)
+        self.assertTrue(region[10, 15])
+        self.assertFalse(region[0, 0])
+        self.assertFalse(region[3, 15])  # footprint respects virtual boundary
+
 
 if __name__ == '__main__':
     unittest.main()

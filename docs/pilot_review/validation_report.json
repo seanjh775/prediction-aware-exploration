@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "samples": 420,
+  "counts": {
+    "train": 328,
+    "validation": 36,
+    "test": 56
+  },
+  "reviewed_samples": 84,
+  "maps": 14,
+  "checks": [
+    "source splits",
+    "all requested maps represented",
+    "unique identities",
+    "complete manifest",
+    "source map checksums",
+    "no duplicate masks within a map",
+    "binary aligned arrays",
+    "no hidden-label leakage",
+    "known-label consistency",
+    "coverage and checksums",
+    "monotonic accumulated observations",
+    "seeded random review membership"
+  ]
+}

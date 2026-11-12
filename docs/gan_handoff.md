@@ -13,7 +13,8 @@ Implemented:
   gradient path to LaMa's latent projection. See `wgan_critic.md`.
 - Fixed map split in `configs/critic_map_split.json`: 10 training, 2 validation,
   2 test. Building groupings are provisional, based on map identifiers.
-- A one-map masked observation preview, not a full training dataset.
+- A one-map masked observation preview, plus multi-map pilot generation,
+  split-safe validation, and a reproducible random 20% PNG review export.
 
 Run the tests from the repository root in the project's Python environment:
 
@@ -43,9 +44,13 @@ scaling up dataset generation. The revised preview still needs user review.
 Next work:
 
 1. Review the preview in a local image viewer or VS Code.
-2. Build reproducible multi-map observation generation and a paired dataset
-   loader. All observations and crops inherit the source map split. The saved
-   run on `50015848` is validation-only.
+2. Review `docs/pilot_review/README.md` for the pilot sample gallery and coverage
+   results. Generation and validation are documented in `docs/masked_pilot.md`.
+   The full NPZ dataset stays under `data/kth_masked_pilot_v1/` in the cloud,
+   excluded from Git. Build a paired training dataset loader next, preserving
+   the source map split and aligned arrays. The old saved run on `50015848` is
+   validation-only. One cropped test map needs an explicit image-extent virtual
+   boundary for routing; inspect its route statistics before broader use.
 3. Add a checkpointed/logged critic-training runner and run a short frozen-LaMa
    smoke test. No WGAN training run has started.
 4. Connect joint generator/critic updates and an explicit latent-diversity

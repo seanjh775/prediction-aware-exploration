@@ -42,6 +42,7 @@ venv/
 
 # Data / Results / Experiments
 experiments/
+data/kth_masked_pilot*/
 outputs/
 *.pt
 *.pth
