@@ -1,0 +1,45 @@
+{
+  "map_id": "50052748",
+  "split": "train",
+  "seed": 42,
+  "lidar": {
+    "laser_range_m": 20,
+    "pixel_per_meter": 10,
+    "num_laser": 2500,
+    "dilate_diam_for_planning": 3
+  },
+  "shape": [
+    218,
+    429
+  ],
+  "occupancy_encoding": "0 free, 1 occupied; observation unknown=0.5",
+  "mask_encoding": "1 unknown, 0 known",
+  "routing": "oracle shortest paths within largest safe component; preview only",
+  "known_labels": "ground-truth labels at lidar-visible cells",
+  "samples": [
+    {
+      "sample": 0,
+      "scan_count": 1,
+      "valid_space_coverage": 0.17548791379335588,
+      "known_label_corrections": 25
+    },
+    {
+      "sample": 1,
+      "scan_count": 31,
+      "valid_space_coverage": 0.38085825976193616,
+      "known_label_corrections": 158
+    },
+    {
+      "sample": 2,
+      "scan_count": 91,
+      "valid_space_coverage": 0.38503096587165636,
+      "known_label_corrections": 146
+    },
+    {
+      "sample": 3,
+      "scan_count": 180,
+      "valid_space_coverage": 0.3921465278692845,
+      "known_label_corrections": 124
+    }
+  ]
+}
