@@ -1,14 +1,20 @@
 import json
+import argparse
 from pathlib import Path
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from scipy.ndimage import distance_transform_edt, label
+from PIL import Image
 import pyastar2d
 from scripts.sim_utils import Mapper, get_kth_occ_validspace_map
+from scripts.map_preview_routing import navigation_region
 
 root = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser(description='Generate an occupancy-routed lidar preview')
+parser.add_argument('--robot-radius-m', type=float, default=0.1,
+                    help='Synthetic circular footprint radius; default 0.1 m is a preview assumption')
+args = parser.parse_args()
 out = root/'work'/'masked_map_preview'
 out.mkdir(parents=True, exist_ok=True)
 map_id = '50052748'
@@ -17,11 +23,9 @@ gt, valid = get_kth_occ_validspace_map(str(root/'kth_test_maps'/map_id/'occ_map.
                                     str(root/'kth_test_maps'/map_id/'valid_space.npy'))
 settings = dict(laser_range_m=20, pixel_per_meter=10, num_laser=2500, dilate_diam_for_planning=3)
 mapper = Mapper(gt, settings)
-safe = (gt == 0) & (valid > 0) & (distance_transform_edt(gt == 0) >= 1)
-components, n = label(safe)
-counts = np.bincount(components.ravel()); counts[0] = 0
-safe = components == counts.argmax()
-points = np.argwhere(safe)
+safe = navigation_region(gt, valid, args.robot_radius_m * settings['pixel_per_meter'])
+# Start and destination samples are annotated, but connecting routes need not be.
+points = np.argwhere(safe & (valid > 0))
 rng = np.random.RandomState(42)
 current = points[rng.randint(len(points))]
 cost = np.where(safe, 1., np.inf).astype(np.float32)
@@ -29,9 +33,12 @@ poses = [current.copy()]
 for _ in range(12):
     # Oracle routing is for a visibility preview, not a deployed exploration policy.
     candidates = points[np.linalg.norm(points-current, axis=1) > 50]
+    if not len(candidates):
+        raise ValueError('No sufficiently distant destinations in this navigation component')
     goal = candidates[rng.randint(len(candidates))]
     path = pyastar2d.astar_path(cost, current, goal, allow_diagonal=False)
     assert path is not None
+    assert np.all(safe[path[:, 0], path[:, 1]])
     poses.extend(path[10::10])
     poses.append(path[-1]); current = path[-1]
 poses = np.array(poses)
@@ -52,6 +59,8 @@ for step, pose in enumerate(poses):
     np.savez_compressed(str(out/('sample_%02d.npz'%index)), ground_truth=target,
                         observation=observation, unknown_mask=unknown.astype(np.uint8),
                         valid_space=valid_crop.astype(np.uint8), poses=poses[:step+1]-500)
+    Image.fromarray((unknown.astype(np.uint8)*255)).save(str(out/('sample_%02d_mask.png'%index)))
+    Image.fromarray(np.rint((1-observation)*255).astype(np.uint8)).save(str(out/('sample_%02d_observation.png'%index)))
     coverage=float((~unknown & valid_crop).sum()/valid_crop.sum())
     snapshots.append((observation,unknown,poses[:step+1]-500))
     records.append(dict(sample=index,scan_count=step+1,valid_space_coverage=coverage,
@@ -70,9 +79,14 @@ for row, ((observation,unknown,trajectory),record) in enumerate(zip(snapshots,re
 fig.suptitle('Training map 50052748 | accumulated lidar observations\nBlack = wall, white = free, gray = unknown; blue = trajectory, orange = robot',fontsize=14)
 fig.subplots_adjust(top=.90, bottom=.02, left=.01, right=.99, hspace=.25, wspace=.04)
 fig.savefig(str(out/'preview.png'),dpi=140)
+Image.fromarray(np.rint((1-target)*255).astype(np.uint8)).save(str(out/'ground_truth.png'))
 metadata=dict(map_id=map_id,split='train',seed=42,lidar=settings,
               shape=list(target.shape),occupancy_encoding='0 free, 1 occupied; observation unknown=0.5',
-              mask_encoding='1 unknown, 0 known',routing='oracle shortest paths within largest safe component; preview only',
+              mask_encoding='1 unknown, 0 known',routing='oracle occupancy-based shortest paths; valid space used for endpoint sampling and coverage only',
+              robot_radius_m=args.robot_radius_m,
+              robot_footprint_note='Synthetic circular footprint assumption, not a measured robot specification',
+              navigation_cells=int(safe.sum()),
+              route_scans_outside_valid_space=int((valid[poses[:,0],poses[:,1]] == 0).sum()),
               known_labels='ground-truth labels at lidar-visible cells',samples=records)
 (out/'metadata.json').write_text(json.dumps(metadata,indent=2))
 print(json.dumps(metadata,indent=2))

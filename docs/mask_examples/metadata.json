@@ -14,32 +14,36 @@
   ],
   "occupancy_encoding": "0 free, 1 occupied; observation unknown=0.5",
   "mask_encoding": "1 unknown, 0 known",
-  "routing": "oracle shortest paths within largest safe component; preview only",
+  "routing": "oracle occupancy-based shortest paths; valid space used for endpoint sampling and coverage only",
+  "robot_radius_m": 0.1,
+  "robot_footprint_note": "Synthetic circular footprint assumption, not a measured robot specification",
+  "navigation_cells": 55233,
+  "route_scans_outside_valid_space": 4,
   "known_labels": "ground-truth labels at lidar-visible cells",
   "samples": [
     {
       "sample": 0,
       "scan_count": 1,
-      "valid_space_coverage": 0.17548791379335588,
-      "known_label_corrections": 25
+      "valid_space_coverage": 0.07250259879064729,
+      "known_label_corrections": 19
     },
     {
       "sample": 1,
-      "scan_count": 31,
-      "valid_space_coverage": 0.38085825976193616,
-      "known_label_corrections": 158
+      "scan_count": 54,
+      "valid_space_coverage": 0.3669053161739945,
+      "known_label_corrections": 61
     },
     {
       "sample": 2,
-      "scan_count": 91,
-      "valid_space_coverage": 0.38503096587165636,
-      "known_label_corrections": 146
+      "scan_count": 160,
+      "valid_space_coverage": 0.8146293612099383,
+      "known_label_corrections": 352
     },
     {
       "sample": 3,
-      "scan_count": 180,
-      "valid_space_coverage": 0.3921465278692845,
-      "known_label_corrections": 124
+      "scan_count": 319,
+      "valid_space_coverage": 0.9296642801715934,
+      "known_label_corrections": 341
     }
   ]
 }

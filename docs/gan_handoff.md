@@ -31,11 +31,14 @@ The script writes `work/masked_map_preview/preview.png`, metadata, and four NPZ
 samples for training map `50052748`. It uses the existing lidar simulator and
 oracle shortest paths for this preview, not an observation-only exploration
 policy. Known labels are taken from ground truth at lidar-visible cells to
-avoid raycasting boundary label artifacts. The trajectory stays within one
-connected area; later snapshots are similar and coverage stalls near 39%.
-Improve trajectory diversity, valid-space connectivity handling, and robot
-footprint/resolution decisions before scaling up dataset generation. The user
-has not yet visually approved the preview because chat image rendering failed.
+avoid raycasting boundary label artifacts. Routing now uses occupancy and an
+explicit circular footprint, with valid-space annotations used for endpoints
+and coverage rather than clipping paths. The corrected preview reaches 93%
+coverage instead of the original 39%; exported PNGs are in `docs/mask_examples`.
+The default footprint radius is a synthetic 0.1 m assumption, configurable using
+`--robot-radius-m`. Verify it against the intended robot and processed map scale.
+Improve trajectory diversity and coverage-aware snapshot selection before
+scaling up dataset generation. The revised preview still needs user review.
 
 Next work:
 

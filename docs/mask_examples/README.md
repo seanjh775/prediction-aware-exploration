@@ -10,27 +10,40 @@ Four snapshots from one accumulated lidar trajectory, seed 42. Each PNG is
   binary masks for training rather than inferring unknowns from PNG intensity.
 - `ground_truth.png`: complete target, black = wall and white = free.
 - `metadata.json`: sensor settings and snapshot statistics.
+- `preview.png`: side-by-side comparison with trajectories and coverage.
 
 | Sample | Accumulated scans | Observed valid-space coverage |
 | --- | ---: | ---: |
-| 00 | 1 | 17.55% |
-| 01 | 31 | 38.09% |
-| 02 | 91 | 38.50% |
-| 03 | 180 | 39.21% |
+| 00 | 1 | 7.25% |
+| 01 | 54 | 36.69% |
+| 02 | 160 | 81.46% |
+| 03 | 319 | 92.97% |
 
-The preview is not a finished training dataset. Its routing mask intersects
-free space with the valid-space annotation and then keeps only the largest
-connected region. That intersection has 26 components on the processed map;
-even the raw-resolution intersection has 28, so downsampling alone does not
-explain the disconnection. The route repeatedly samples random destinations
-within the retained region, giving little new visibility after the early scans.
-Navigation traversability and evaluation valid-space annotations need separate
-treatment before full dataset generation. Conservative downsampling and robot
-clearance can also close narrow passages and require explicit checks.
+The preview is not a finished training dataset. Navigation now comes from the
+occupancy map and an explicit circular footprint; valid-space annotations only
+select the interior component, sample endpoints, and measure coverage. Routes
+can traverse free connections outside the annotation. Border-connected free
+space is excluded so the padded exterior cannot become the selected component.
+
+The synthetic footprint radius defaults to 0.1 m (one processed pixel at the
+configured 10 pixels/m), not a measured robot specification. Configure it with
+`--robot-radius-m`; clearance requires distance to occupied cell centers strictly
+greater than the radius. This raster approximation and conservative map
+downsampling need verification against the intended robot. The selection rejects
+maps with no non-border-connected annotated component rather than silently
+routing through the exterior.
+
+The original preview clipped routes to the annotation, splitting navigable
+space into 26 regions, and stalled near 39% coverage. The corrected preview
+reaches about 93% using the same map and seed, but a different start/trajectory
+because the candidate navigation region changed. This is not a controlled
+equal-scan-count policy comparison.
 
 Ground-truth shortest paths were used solely to create this preview. Visible
 labels are copied from the ground truth at lidar-visible cells to eliminate
 raycasting boundary label artifacts, making this an idealized noiseless example.
-All snapshots share the same ground truth, and later snapshots are highly
-correlated. They demonstrate masking and alignment, not broad training coverage
+All snapshots share the same ground truth. The route is still a random sequence
+of oracle shortest paths, not an observation-only exploration policy. Multiple
+starts and coverage-aware snapshot selection remain work for the full dataset.
+These examples demonstrate masking and alignment, not broad training coverage
 or calibrated aleatoric uncertainty.
