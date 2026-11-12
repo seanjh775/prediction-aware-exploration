@@ -24,8 +24,8 @@ modes_to_test: ['pipe']
 log_iou: false
 mission_time: 1000
 
-lama_device: 'cuda:0'  # For GPU mode
-#lama_device: 'cpu'      # For CPU mode
+lama_device: 'cpu'      # CPU mode for this cloud environment
+#lama_device: 'cuda:0'  # For GPU mode
 
 ######################### Do not change below this line #########################
 
