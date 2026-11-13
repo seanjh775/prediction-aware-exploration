@@ -22,8 +22,9 @@ class ProbabilisticLaMa(nn.Module):
         if observation.ndim != 4 or observation.shape[1] != 1 or observation.shape != unknown_mask.shape:
             raise ValueError('Expected matching B1HW observation and mask')
         height, width = observation.shape[-2:]
-        # Checkpoint images encode white/free as 1; dataset occupancy encodes walls as 1.
-        image = ((1-observation) * (1-unknown_mask)).repeat(1, 3, 1, 1)
+        # Map checkpoint and NPZ data both encode occupied=1, free=0.
+        # PNG review visualizations invert this convention for display only.
+        image = (observation * (1-unknown_mask)).repeat(1, 3, 1, 1)
         inputs = torch.cat([image, unknown_mask], dim=1)
         inputs = F.pad(inputs, (0, (-width) % 16, 0, (-height) % 16))
         return self.generator(inputs)[:, :, :height, :width]
@@ -57,14 +58,16 @@ def load_pretrained_big_lama(model_directory):
         key = head_name+'.'+suffix
         if key not in state or state[key].shape[0] != 3:
             raise ValueError('Expected the original three-channel output head: '+key)
-        # Mean RGB free-space logits become occupancy logits by negating them.
-        state[key] = -state[key].mean(dim=0, keepdim=True)
+        # The pretrained image channels already represent occupancy.
+        state[key] = state[key].mean(dim=0, keepdim=True)
     model.generator.load_state_dict(state, strict=True)
     return model
 
 
 def load_occupancy_checkpoint(path, device='cpu'):
     checkpoint = torch.load(str(path), map_location='cpu')
+    if checkpoint['configuration'].get('encoding_version') != 2:
+        raise ValueError('Checkpoint predates the corrected occupancy encoding; restart from Big LaMa')
     model = ProbabilisticLaMa(checkpoint['configuration']['generator_config'])
     model.load_state_dict(checkpoint['model'], strict=True)
     return model.to(device).eval()

@@ -44,11 +44,11 @@ class OccupancyDataset(Dataset):
 
 
 def collate_occupancy(samples):
-    # RGB checkpoint padding is black/occupied; masks mark it known, loss excludes it.
+    # Original RGB map padding is black/free; masks mark it known, loss excludes it.
     height = ((max(s['observation'].shape[-2] for s in samples)+15)//16)*16
     width = ((max(s['observation'].shape[-1] for s in samples)+15)//16)*16
     shape = (len(samples), 1, height, width)
-    batch = dict(observation=torch.ones(shape), unknown_mask=torch.zeros(shape),
+    batch = dict(observation=torch.zeros(shape), unknown_mask=torch.zeros(shape),
                  ground_truth=torch.zeros(shape), image_mask=torch.zeros(shape),
                  map_id=[s['map_id'] for s in samples], sample_id=[s['sample_id'] for s in samples])
     for index, sample in enumerate(samples):

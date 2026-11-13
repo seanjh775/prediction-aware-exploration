@@ -1,0 +1,763 @@
+{
+  "run": "probabilistic_short_02",
+  "encoding_version": 2,
+  "training_maps": [
+    "50052748",
+    "50052749",
+    "50052751"
+  ],
+  "available_training_examples": 107,
+  "updates": 20,
+  "validation_maps": [
+    "50015847",
+    "50015848"
+  ],
+  "validation_examples": 6,
+  "crop_size": 256,
+  "learning_rate": 1e-05,
+  "train_seconds": 56.46846249900011,
+  "best_step": 10,
+  "checkpoint_reload_validated": true,
+  "validation_history": [
+    {
+      "step": 0,
+      "cells": 249694,
+      "nll": 2.096929066959208,
+      "brier": 0.09483923899024281,
+      "accuracy": 0.9030373176768365,
+      "occupied_iou": 0.4193726317809008,
+      "ece": 0.09335082499787778,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 224321,
+          "mean_probability": 0.0006222746375090284,
+          "occupied_frequency": 0.07655992974353716
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 526,
+          "mean_probability": 0.1450059533034214,
+          "occupied_frequency": 0.35551330798479086
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 338,
+          "mean_probability": 0.24818021967213535,
+          "occupied_frequency": 0.41420118343195267
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 271,
+          "mean_probability": 0.3474587457206416,
+          "occupied_frequency": 0.42066420664206644
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 254,
+          "mean_probability": 0.448587619882869,
+          "occupied_frequency": 0.38976377952755903
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 235,
+          "mean_probability": 0.5469987947890099,
+          "occupied_frequency": 0.425531914893617
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 273,
+          "mean_probability": 0.6518352929052416,
+          "occupied_frequency": 0.43223443223443225
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 309,
+          "mean_probability": 0.7525796641423864,
+          "occupied_frequency": 0.5210355987055016
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 502,
+          "mean_probability": 0.8556535340162862,
+          "occupied_frequency": 0.5139442231075697
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 22665,
+          "mean_probability": 0.9967583205061928,
+          "occupied_frequency": 0.743437017427752
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cells": 249694,
+      "nll": 1.9940154991897583,
+      "brier": 0.0901682546155244,
+      "accuracy": 0.9080514549808966,
+      "occupied_iou": 0.4223278985507246,
+      "ece": 0.08864269423724808,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 227044,
+          "mean_probability": 0.0004752305271800894,
+          "occupied_frequency": 0.07862793114990926
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 524,
+          "mean_probability": 0.14261176181203536,
+          "occupied_frequency": 0.38549618320610685
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 323,
+          "mean_probability": 0.24568294865243576,
+          "occupied_frequency": 0.4458204334365325
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 245,
+          "mean_probability": 0.3459575587389421,
+          "occupied_frequency": 0.43673469387755104
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 230,
+          "mean_probability": 0.4485058520151221,
+          "occupied_frequency": 0.4826086956521739
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 212,
+          "mean_probability": 0.5524047053647492,
+          "occupied_frequency": 0.4811320754716981
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 206,
+          "mean_probability": 0.651697499080769,
+          "occupied_frequency": 0.5922330097087378
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 298,
+          "mean_probability": 0.7517824697014469,
+          "occupied_frequency": 0.5805369127516778
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 451,
+          "mean_probability": 0.8561183909354876,
+          "occupied_frequency": 0.6496674057649667
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 20161,
+          "mean_probability": 0.9965253303663686,
+          "occupied_frequency": 0.7983234958583404
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "cells": 249694,
+      "nll": 1.909645339489285,
+      "brier": 0.08938488854889635,
+      "accuracy": 0.9086642049869039,
+      "occupied_iou": 0.4199160625715376,
+      "ece": 0.08772203864195141,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 227595,
+          "mean_probability": 0.0005363584375376079,
+          "occupied_frequency": 0.07927239174850062
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 636,
+          "mean_probability": 0.14327973954426418,
+          "occupied_frequency": 0.38836477987421386
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 331,
+          "mean_probability": 0.24929337068446814,
+          "occupied_frequency": 0.525679758308157
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 285,
+          "mean_probability": 0.34771892773477653,
+          "occupied_frequency": 0.4421052631578947
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 224,
+          "mean_probability": 0.4505696895399264,
+          "occupied_frequency": 0.45982142857142855
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 234,
+          "mean_probability": 0.5528366797500186,
+          "occupied_frequency": 0.5213675213675214
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 252,
+          "mean_probability": 0.6509936097122374,
+          "occupied_frequency": 0.5674603174603174
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 339,
+          "mean_probability": 0.7541375796703462,
+          "occupied_frequency": 0.5988200589970502
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 446,
+          "mean_probability": 0.8530921524415637,
+          "occupied_frequency": 0.6569506726457399
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 19352,
+          "mean_probability": 0.996634085777009,
+          "occupied_frequency": 0.8137660190161223
+        }
+      ]
+    },
+    {
+      "step": 15,
+      "cells": 249694,
+      "nll": 1.990460096595733,
+      "brier": 0.08983048669540267,
+      "accuracy": 0.9083558275329002,
+      "occupied_iou": 0.4160265407681511,
+      "ece": 0.08820087659889249,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 228005,
+          "mean_probability": 0.00046451588500287636,
+          "occupied_frequency": 0.08022192495778602
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 568,
+          "mean_probability": 0.14489098636984404,
+          "occupied_frequency": 0.41901408450704225
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 339,
+          "mean_probability": 0.2464670296703468,
+          "occupied_frequency": 0.3834808259587021
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 263,
+          "mean_probability": 0.35105348041302353,
+          "occupied_frequency": 0.45627376425855515
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 233,
+          "mean_probability": 0.45333524412863246,
+          "occupied_frequency": 0.5150214592274678
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 244,
+          "mean_probability": 0.5497292123857092,
+          "occupied_frequency": 0.5327868852459017
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 258,
+          "mean_probability": 0.6502218851747439,
+          "occupied_frequency": 0.6162790697674418
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 285,
+          "mean_probability": 0.7522409572935941,
+          "occupied_frequency": 0.656140350877193
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 389,
+          "mean_probability": 0.8538926321926951,
+          "occupied_frequency": 0.6401028277634961
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 19110,
+          "mean_probability": 0.9967295722366315,
+          "occupied_frequency": 0.8151229722658294
+        }
+      ]
+    },
+    {
+      "step": 20,
+      "cells": 249694,
+      "nll": 4.057058824376036,
+      "brier": 0.09075643988632712,
+      "accuracy": 0.9075268128188904,
+      "occupied_iou": 0.40162744894785946,
+      "ece": 0.0894829841898191,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 229541,
+          "mean_probability": 0.00035151415812430465,
+          "occupied_frequency": 0.0832966659551017
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 499,
+          "mean_probability": 0.14443695274945012,
+          "occupied_frequency": 0.3727454909819639
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 312,
+          "mean_probability": 0.24784240398842555,
+          "occupied_frequency": 0.41025641025641024
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 233,
+          "mean_probability": 0.35032651544640503,
+          "occupied_frequency": 0.5879828326180258
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 224,
+          "mean_probability": 0.4504097720075931,
+          "occupied_frequency": 0.5892857142857143
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 192,
+          "mean_probability": 0.5520167251427969,
+          "occupied_frequency": 0.5364583333333334
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 200,
+          "mean_probability": 0.6509098172187805,
+          "occupied_frequency": 0.62
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 261,
+          "mean_probability": 0.7548834286430329,
+          "occupied_frequency": 0.6436781609195402
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 417,
+          "mean_probability": 0.85773667743166,
+          "occupied_frequency": 0.6906474820143885
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 17815,
+          "mean_probability": 0.9969183249015873,
+          "occupied_frequency": 0.8316025820937413
+        }
+      ]
+    }
+  ],
+  "baseline_by_map": {
+    "50015847": {
+      "cells": 138633,
+      "nll": 2.6794589852343957,
+      "brier": 0.11584994545513154,
+      "accuracy": 0.882459443278296,
+      "occupied_iou": 0.2790461021148571,
+      "ece": 0.11510988712737447,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 128342,
+          "mean_probability": 0.0002712283559310177,
+          "occupied_frequency": 0.09812843807950632
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 208,
+          "mean_probability": 0.14651876842029965,
+          "occupied_frequency": 0.40384615384615385
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 132,
+          "mean_probability": 0.24343318255110222,
+          "occupied_frequency": 0.5151515151515151
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 81,
+          "mean_probability": 0.34623347094029555,
+          "occupied_frequency": 0.4691358024691358
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 92,
+          "mean_probability": 0.4482249225611272,
+          "occupied_frequency": 0.43478260869565216
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 96,
+          "mean_probability": 0.5510920776675144,
+          "occupied_frequency": 0.4479166666666667
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 114,
+          "mean_probability": 0.6546095024075425,
+          "occupied_frequency": 0.45614035087719296
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 126,
+          "mean_probability": 0.7532387106191545,
+          "occupied_frequency": 0.47619047619047616
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 208,
+          "mean_probability": 0.8571324485998887,
+          "occupied_frequency": 0.4567307692307692
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 9234,
+          "mean_probability": 0.9968090019934566,
+          "occupied_frequency": 0.6559454191033138
+        }
+      ]
+    },
+    "50015848": {
+      "cells": 111061,
+      "nll": 1.3697802914192425,
+      "brier": 0.06861241526862209,
+      "accuracy": 0.9287238544583607,
+      "occupied_iou": 0.5854629241726016,
+      "ece": 0.06618985886036313,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 95979,
+          "mean_probability": 0.0010916896331881454,
+          "occupied_frequency": 0.04771877181466779
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 318,
+          "mean_probability": 0.14401643901313627,
+          "occupied_frequency": 0.3238993710691824
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 206,
+          "mean_probability": 0.25122201044871967,
+          "occupied_frequency": 0.34951456310679613
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 190,
+          "mean_probability": 0.3479810997059471,
+          "occupied_frequency": 0.4
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 162,
+          "mean_probability": 0.4487935961396606,
+          "occupied_frequency": 0.36419753086419754
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 139,
+          "mean_probability": 0.5441717792757981,
+          "occupied_frequency": 0.41007194244604317
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 159,
+          "mean_probability": 0.6498462370356674,
+          "occupied_frequency": 0.41509433962264153
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 183,
+          "mean_probability": 0.7521258944370708,
+          "occupied_frequency": 0.5519125683060109
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 294,
+          "mean_probability": 0.854607227099996,
+          "occupied_frequency": 0.5544217687074829
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 13431,
+          "mean_probability": 0.9967234762761733,
+          "occupied_frequency": 0.8035887126796217
+        }
+      ]
+    }
+  },
+  "best_by_map": {
+    "50015847": {
+      "cells": 138633,
+      "nll": 2.4386592545606023,
+      "brier": 0.10772248920317042,
+      "accuracy": 0.8907330866388233,
+      "occupied_iou": 0.2752153110047847,
+      "ece": 0.10701115528470379,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 130602,
+          "mean_probability": 0.00023841355410011777,
+          "occupied_frequency": 0.10031239950383608
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 188,
+          "mean_probability": 0.1413341756672301,
+          "occupied_frequency": 0.5372340425531915
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 126,
+          "mean_probability": 0.24827005312083258,
+          "occupied_frequency": 0.626984126984127
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 109,
+          "mean_probability": 0.34428741571006427,
+          "occupied_frequency": 0.5412844036697247
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 87,
+          "mean_probability": 0.4515740778939477,
+          "occupied_frequency": 0.4482758620689655
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 88,
+          "mean_probability": 0.5508235042745416,
+          "occupied_frequency": 0.5227272727272727
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 96,
+          "mean_probability": 0.6506828541556994,
+          "occupied_frequency": 0.4895833333333333
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 112,
+          "mean_probability": 0.7545327922063214,
+          "occupied_frequency": 0.5089285714285714
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 167,
+          "mean_probability": 0.8524671075586787,
+          "occupied_frequency": 0.5868263473053892
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 7058,
+          "mean_probability": 0.996840508751303,
+          "occupied_frequency": 0.7798243128364976
+        }
+      ]
+    },
+    "50015848": {
+      "cells": 111061,
+      "nll": 1.2492984482485976,
+      "brier": 0.06649479579352788,
+      "accuracy": 0.9310469021528709,
+      "occupied_iou": 0.5841433613901711,
+      "ece": 0.0636493739083262,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "cells": 96993,
+          "mean_probability": 0.0009375440660541445,
+          "occupied_frequency": 0.05094182054375058
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "cells": 448,
+          "mean_probability": 0.1440961815283767,
+          "occupied_frequency": 0.32589285714285715
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "cells": 205,
+          "mean_probability": 0.2499223366016295,
+          "occupied_frequency": 0.4634146341463415
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "cells": 176,
+          "mean_probability": 0.3498441255228086,
+          "occupied_frequency": 0.3806818181818182
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "cells": 137,
+          "mean_probability": 0.4499318662786136,
+          "occupied_frequency": 0.46715328467153283
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "cells": 146,
+          "mean_probability": 0.5540501005845527,
+          "occupied_frequency": 0.5205479452054794
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "cells": 156,
+          "mean_probability": 0.6511848439008762,
+          "occupied_frequency": 0.6153846153846154
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "cells": 227,
+          "mean_probability": 0.75394258493894,
+          "occupied_frequency": 0.6431718061674009
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "cells": 279,
+          "mean_probability": 0.8534662832495987,
+          "occupied_frequency": 0.6989247311827957
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "cells": 12294,
+          "mean_probability": 0.9965155781023247,
+          "occupied_frequency": 0.8332519928420368
+        }
+      ]
+    }
+  },
+  "sampled_training_counts": {
+    "50052748": 6,
+    "50052749": 8,
+    "50052751": 6
+  },
+  "caveats": [
+    "Six fixed validation crops, not full-map evaluation.",
+    "The test split was not loaded.",
+    "Run probabilistic_short_01 and earlier smoke checkpoints are invalid due to corrected encoding.",
+    "Calibration and aleatoric separation are not established."
+  ]
+}

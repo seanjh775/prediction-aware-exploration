@@ -54,7 +54,7 @@ class ProbabilisticTest(unittest.TestCase):
         self.assertEqual(tuple(batch['observation'].shape), (2,1,32,32))
         self.assertEqual(batch['image_mask'].sum().item(), 17*21+20*18)
         self.assertEqual(batch['unknown_mask'].sum().item(), 17*21+20*18)
-        self.assertEqual(batch['observation'][0,0,31,31].item(), 1)
+        self.assertEqual(batch['observation'][0,0,31,31].item(), 0)
 
     def test_single_pass_replay_shape_and_known_cell_preservation(self):
         model = tiny_model().eval()
@@ -79,16 +79,26 @@ class ProbabilisticTest(unittest.TestCase):
             OmegaConf.save(OmegaConf.create(dict(generator=dict(config,kind='ffc_resnet'))), str(path/'config.yaml'))
             torch.save(dict(state_dict={'generator.'+k:v for k,v in original.state_dict().items()}), str(path/'models'/'best.ckpt'))
             model = load_pretrained_big_lama(path)
+            original.eval(); model.eval()
+            observation = torch.rand(1,1,32,32)
+            unknown = torch.zeros_like(observation); unknown[:,:,8:24,8:24] = 1
+            with torch.no_grad():
+                original_rgb = original(torch.cat([(observation*(1-unknown)).repeat(1,3,1,1),unknown],1))
+                expected_logits = torch.logit(original_rgb).mean(1,keepdim=True)
+                self.assertTrue(torch.allclose(model(observation,unknown),expected_logits,atol=1e-5,rtol=1e-4))
             head_name = [name for name, layer in model.generator.named_modules()
                          if isinstance(layer,torch.nn.Conv2d)][-1]
             for key,value in model.generator.state_dict().items():
                 expected = original.state_dict()[key]
                 if key in [head_name+'.weight',head_name+'.bias']:
-                    expected = -expected.mean(0,keepdim=True)
+                    expected = expected.mean(0,keepdim=True)
                 self.assertTrue(torch.equal(value,expected),key)
-            torch.save(dict(configuration=dict(generator_config=model.generator_config),model=model.state_dict()),str(path/'trained.pt'))
+            torch.save(dict(configuration=dict(generator_config=model.generator_config,encoding_version=2),model=model.state_dict()),str(path/'trained.pt'))
             restored=load_occupancy_checkpoint(path/'trained.pt')
             self.assertTrue(all(torch.equal(v,restored.state_dict()[k]) for k,v in model.state_dict().items()))
+            torch.save(dict(configuration=dict(generator_config=model.generator_config),model=model.state_dict()),str(path/'old.pt'))
+            with self.assertRaisesRegex(ValueError,'corrected occupancy encoding'):
+                load_occupancy_checkpoint(path/'old.pt')
 
     def test_input_encoding_and_hidden_label_invariance(self):
         model=tiny_model().eval()
@@ -102,8 +112,8 @@ class ProbabilisticTest(unittest.TestCase):
             second=model(changed,mask)
         hook.remove()
         self.assertTrue(torch.equal(first,second))
-        self.assertEqual(captured[0][0,0,0,0].item(),0)  # occupied input is black
-        self.assertEqual(captured[0][0,0,1,1].item(),1)  # free input is white
+        self.assertEqual(captured[0][0,0,0,0].item(),1)  # occupied input is white
+        self.assertEqual(captured[0][0,0,1,1].item(),0)  # free input is black
         self.assertEqual(captured[0][0,0,10,10].item(),0)  # hidden content removed
 
 

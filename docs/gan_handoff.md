@@ -45,9 +45,11 @@ scaling up dataset generation. The revised preview still needs user review.
 
 Next work:
 
-1. Run a substantive probabilistic Big LaMa fine-tuning experiment after the
-   single-step smoke check. Inspect NLL, Brier, calibration and occupied IoU on
-   validation maps before any final test evaluation. No full run has started.
+1. A 20-update experiment on three training maps is complete; see
+   `training_runs/probabilistic_short_run.md`. The best checkpoint was step 10;
+   validation NLL worsened later. Investigate stability and expand held-out
+   validation before a longer run or final test evaluation. The input/head
+   encoding was corrected to occupied=1/free=0; use checkpoint encoding version 2.
 2. Review `docs/pilot_review/README.md` for the pilot sample gallery and coverage
    results. Generation and validation are documented in `docs/masked_pilot.md`.
    The full NPZ dataset stays under `data/kth_masked_pilot_v1/` in the cloud,

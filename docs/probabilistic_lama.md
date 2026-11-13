@@ -8,15 +8,16 @@ exploration code is preserved separately.
 
 ## Encoding and pretrained adaptation
 
-Pilot targets use 0 = free and 1 = occupied. The original RGB checkpoint uses
-white/free = 1 and black/wall = 0. The adapter converts known occupancy to repeated
-RGB free-space intensities, removes unknown content, and appends the unknown mask.
+Pilot targets use 0 = free and 1 = occupied. The map-specific RGB checkpoint also uses
+occupied = 1 and free = 0. The adapter repeats known occupancy into RGB channels,
+removes unknown content, and appends the unknown mask. The PNG review gallery
+inverts this convention for display only; it is not the model input encoding.
 Thus hidden target labels cannot enter the generator conditioning input.
 
 All backbone parameters load strictly from the Big LaMa checkpoint. The last
 three-channel convolution is replaced by a one-channel convolution without a
-sigmoid. Its weights and bias start from the negative mean of the RGB output
-weights and bias, converting mean free-space logits into occupancy logits. This
+sigmoid. Its weights and bias start from the mean of the RGB occupancy output
+weights and bias, retaining their original sign. This
 is an initialization, not a guarantee of calibrated probabilities. There is no
 separate learned uncertainty head and no ensemble or latent-sample comparison.
 
@@ -33,7 +34,7 @@ uses seeded, epoch-dependent, aligned crops without rescaling; each crop contain
 an unknown anchor. This deliberately samples crops with unknown content, so any
 calibration claim must be assessed on the held-out full-image distribution.
 The collator pads heterogeneous shapes to multiples of 16, tracks actual image
-support, and uses occupied/known padding (black in pretrained RGB space).
+support, and uses free/known padding (black in pretrained RGB space).
 
 By default validation uses complete processed maps, one per batch, and no random
 augmentation. Development uses only train and validation splits; this runner
@@ -56,7 +57,10 @@ processed map pixels and does not change the physical pixel scale.
 
 The output directory must be new. `config.json` records architecture and settings;
 `metrics.jsonl` logs steps and validation; `last.pt` and `best.pt` save model and
-optimizer state. Best means lowest validation NLL. The script does not yet resume
+optimizer state. Best means lowest validation NLL. Before training, the runner logs validation at step zero and includes that baseline
+in best-checkpoint selection. `--train-maps` limits training to explicitly named
+training-map IDs. `--validation-samples-per-map` selects fixed coverage-spaced
+examples from each held-out validation map for short runs. The script does not yet resume
 an interrupted optimizer run. No claim of exact cross-device reproducibility is
 made. Full training runs are not started automatically by implementation checks.
 
@@ -104,3 +108,7 @@ Run the portable tests with:
 ```bash
 PYTHONPATH=.:lama python -m unittest discover -s tests -v
 ```
+
+Encoding correction: checkpoint format version 2 uses direct occupancy inputs
+and a positive mean output head. Earlier smoke checkpoints used an inverted
+encoding and must not be resumed; the inference loader rejects those checkpoints.
