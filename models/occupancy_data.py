@@ -8,7 +8,7 @@ from torch.utils.data import Dataset
 
 
 class OccupancyDataset(Dataset):
-    def __init__(self, root, split, crop_size=0, seed=42):
+    def __init__(self, root, split, crop_size=0, seed=42, fixed_crops=False):
         if split not in ['train', 'validation', 'test']:
             raise ValueError('Unknown data split')
         self.root = Path(root)
@@ -18,6 +18,7 @@ class OccupancyDataset(Dataset):
         if not self.records or any(r['map_id'] not in assignment[split] for r in self.records):
             raise ValueError('Empty or inconsistent source-map split')
         self.crop_size, self.seed, self.epoch = crop_size, seed, 0
+        self.fixed_crops = fixed_crops
 
     def __len__(self):
         return len(self.records)
@@ -29,7 +30,8 @@ class OccupancyDataset(Dataset):
                       ['observation', 'unknown_mask', 'ground_truth']}
         top, left = 0, 0
         if self.crop_size:
-            rng = np.random.RandomState((self.seed + self.epoch*len(self) + index) % (2**32))
+            crop_epoch = 0 if self.fixed_crops else self.epoch
+            rng = np.random.RandomState((self.seed + crop_epoch*len(self) + index) % (2**32))
             unknown = np.argwhere(arrays['unknown_mask'] > 0)
             if not len(unknown):
                 raise ValueError('Example contains no unknown cells')

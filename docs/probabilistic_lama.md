@@ -138,3 +138,17 @@ Counts accumulate across examples rather than averaging per-image F1.
 This metric never changes the BCE loss, target labels, gradient computation,
 or checkpoint selection by NLL. Exact IoU and probability metrics remain available.
 See `training_runs/frozen_bn_run.md` for the controlled 20-update comparison.
+
+## Two-fixed-crop learning check
+
+Use `--train-sample-ids` to restrict training to explicit observations from the
+training split and `--fixed-training-crops` to keep their crop windows unchanged
+across epochs. Without the latter flag, repeated observations normally receive
+new seeded crop locations each epoch. Training logs record crop origins and
+content fingerprints in fixed-crop mode so repetition can be verified.
+
+Explicit `--validation-sample-ids` may select held-out observations, independently
+of training. These cannot be combined with coverage-based validation selection.
+IDs are checked against their source split; duplicates and cross-split selections
+are rejected. This diagnostic intentionally repeats a tiny training set and is
+not evidence of generalization across the full ten-map training pool.

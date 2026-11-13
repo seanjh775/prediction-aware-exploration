@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import random
 import time
+import hashlib
 
 import numpy as np
 import torch
@@ -34,6 +35,15 @@ def select_validation_examples(dataset, count):
         indices = np.linspace(0, len(records)-1, min(count,len(records)), dtype=int)
         selected.extend(records[index] for index in indices)
     dataset.records = selected
+
+
+def select_sample_ids(dataset, sample_ids):
+    if not sample_ids:
+        return
+    available = {r['sample_id']:r for r in dataset.records}
+    if len(set(sample_ids)) != len(sample_ids) or not set(sample_ids) <= set(available):
+        raise ValueError('Sample IDs must be unique and belong to the selected split/maps')
+    dataset.records = [available[sample_id] for sample_id in sample_ids]
 
 
 def to_device(batch, device):
@@ -89,6 +99,9 @@ def main():
     parser.add_argument('--freeze-bn-stats', action='store_true', help='Keep pretrained BatchNorm statistics fixed; affine parameters still train')
     parser.add_argument('--boundary-tolerance-pixels', type=float, default=1.)
     parser.add_argument('--train-maps', nargs='+', help='Optional subset of original training-map IDs')
+    parser.add_argument('--train-sample-ids', nargs='+')
+    parser.add_argument('--validation-sample-ids', nargs='+')
+    parser.add_argument('--fixed-training-crops', action='store_true',help='Repeat identical crop windows across epochs')
     parser.add_argument('--validation-samples-per-map', type=int, default=0,
                         help='0 uses all; otherwise take fixed coverage-spaced examples per held-out map')
     parser.add_argument('--seed', type=int, default=42)
@@ -108,10 +121,14 @@ def main():
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(args.seed)
     device = torch.device(args.device)
-    train = OccupancyDataset(args.data, 'train', args.crop_size, args.seed)
+    train = OccupancyDataset(args.data, 'train', args.crop_size, args.seed,fixed_crops=args.fixed_training_crops)
     validation = OccupancyDataset(args.data, 'validation', args.validation_crop_size, args.seed+1)
     select_training_maps(train, args.train_maps)
+    select_sample_ids(train,args.train_sample_ids)
+    if args.validation_sample_ids and args.validation_samples_per_map:
+        raise ValueError('Choose explicit validation IDs or coverage-based selection, not both')
     select_validation_examples(validation, args.validation_samples_per_map)
+    select_sample_ids(validation,args.validation_sample_ids)
     validation_loader = DataLoader(validation, batch_size=1, collate_fn=collate_occupancy)
     model = load_pretrained_big_lama(args.pretrained).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
@@ -121,6 +138,7 @@ def main():
                          generator_config=model.generator_config, critic=False, latent_noise=False,
                          head_initialization='mean pretrained RGB occupancy logits', encoding_version=2,
                          training_examples=len(train), validation_examples=len(validation),
+                         training_sample_ids=[r['sample_id'] for r in train.records],
                          validation_sample_ids=[r['sample_id'] for r in validation.records])
     (args.output/'config.json').write_text(json.dumps(configuration, indent=2)+'\n')
     started = time.perf_counter()
@@ -153,6 +171,12 @@ def main():
                 optimizer.step(); step += 1
                 record = dict(step=step, epoch=epoch, train_nll=loss.item(), sample_ids=batch['sample_id'],
                               train_seconds=time.perf_counter()-step_started)
+                if args.fixed_training_crops:
+                    record['crop_origins'] = batch['crop_origin']
+                    record['crop_fingerprints'] = [hashlib.sha256(b''.join(
+                        batch[key][item].detach().cpu().numpy().tobytes() for key in
+                        ['observation','unknown_mask','ground_truth','image_mask'])).hexdigest()
+                        for item in range(len(batch['sample_id']))]
                 if step % args.validate_every == 0 or step == args.steps:
                     record['validation'] = evaluate(model, validation_loader, device, args.validation_limit,args.boundary_tolerance_pixels)
                     checkpoint = dict(step=step, epoch=epoch, model=model.state_dict(),

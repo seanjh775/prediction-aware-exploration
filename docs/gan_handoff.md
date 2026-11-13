@@ -62,6 +62,12 @@ Next work:
    trained. One-pixel-tolerant boundary precision/recall/F1 are evaluation-only.
    Compare all metrics: Brier and ECE remain worse than the earlier best, and
    full-map validation/calibrated uncertainty are not yet established.
+   A separate 100-update check on two fixed training crops is also complete;
+   see `training_runs/two_fixed_100_run.md`. Held-out NLL improved from 1.872
+   to 1.040 at update 50 and 0.699 at update 100, while wall IoU and tolerant
+   boundary F1 declined. All crops were verified fixed; checkpoints 50/100 are
+   saved locally. The user wants to review these results before any full-scale
+   experiment. Do not start that larger run automatically.
 2. Review `docs/pilot_review/README.md` for the pilot sample gallery and coverage
    results. Generation and validation are documented in `docs/masked_pilot.md`.
    The full NPZ dataset stays under `data/kth_masked_pilot_v1/` in the cloud,
