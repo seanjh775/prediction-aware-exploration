@@ -1,0 +1,528 @@
+{
+  "policy": "Fixed 10/2/2 source-map split; validation-only inspection, no training or test data.",
+  "stages": [
+    "baseline",
+    "update50",
+    "update100"
+  ],
+  "samples": [
+    {
+      "sample_id": "50015847_t02_s04",
+      "map_id": "50015847",
+      "crop_origin": [
+        186,
+        29
+      ],
+      "counts": {
+        "baseline": {
+          "tp": 2419,
+          "fp": 1333,
+          "fn": 2039,
+          "tn": 28966
+        },
+        "update50": {
+          "tp": 2177,
+          "fp": 1230,
+          "fn": 2281,
+          "tn": 29069
+        },
+        "update100": {
+          "tp": 2082,
+          "fp": 1255,
+          "fn": 2376,
+          "tn": 29044
+        }
+      },
+      "transitions": {
+        "walls_correct_both": {
+          "cells": 2054,
+          "nll_improvement_sum": -47.68298201052192,
+          "mean_probability": {
+            "baseline": 0.9950019717216492,
+            "update50": 0.9885860085487366,
+            "update100": 0.9752638339996338
+          },
+          "mean_nll": {
+            "baseline": 0.005887458925372927,
+            "update50": 0.013111295954461998,
+            "update100": 0.029102153185607552
+          }
+        },
+        "walls_missed_both": {
+          "cells": 2011,
+          "nll_improvement_sum": 44442.52308404446,
+          "mean_probability": {
+            "baseline": 0.015474322251975536,
+            "update50": 0.012523398734629154,
+            "update100": 0.026127081364393234
+          },
+          "mean_nll": {
+            "baseline": 28.60967744042896,
+            "update50": 11.784083935539115,
+            "update100": 6.509964320565977
+          }
+        },
+        "newly_missed_walls": {
+          "cells": 365,
+          "nll_improvement_sum": -871.8183514551954,
+          "mean_probability": {
+            "baseline": 0.9003564119338989,
+            "update50": 0.34871193766593933,
+            "update100": 0.1615181863307953
+          },
+          "mean_nll": {
+            "baseline": 0.11728183992468684,
+            "update50": 1.8443421395880462,
+            "update100": 2.505825268569058
+          }
+        },
+        "recovered_walls": {
+          "cells": 28,
+          "nll_improvement_sum": 284.27307020707667,
+          "mean_probability": {
+            "baseline": 0.13095857203006744,
+            "update50": 0.4771040081977844,
+            "update100": 0.7657288312911987
+          },
+          "mean_nll": {
+            "baseline": 10.446874784571785,
+            "update50": 1.8499219434502752,
+            "update100": 0.2942651343190446
+          }
+        },
+        "free_correct_both": {
+          "cells": 28686,
+          "nll_improvement_sum": -729.9744292103948,
+          "mean_probability": {
+            "baseline": 0.003274307120591402,
+            "update50": 0.0076904939487576485,
+            "update100": 0.02712039090692997
+          },
+          "mean_nll": {
+            "baseline": 0.0036593891855729865,
+            "update50": 0.008774061307750469,
+            "update100": 0.02910645148810366
+          }
+        },
+        "false_walls_both": {
+          "cells": 975,
+          "nll_improvement_sum": 15396.533727765083,
+          "mean_probability": {
+            "baseline": 0.9866325855255127,
+            "update50": 0.9901642799377441,
+            "update100": 0.9707059860229492
+          },
+          "mean_nll": {
+            "baseline": 29.208675786898688,
+            "update50": 21.409402561126612,
+            "update100": 13.417359143037062
+          }
+        },
+        "removed_false_walls": {
+          "cells": 358,
+          "nll_improvement_sum": 2973.0940588981002,
+          "mean_probability": {
+            "baseline": 0.9156678318977356,
+            "update50": 0.3545914888381958,
+            "update100": 0.08941131830215454
+          },
+          "mean_nll": {
+            "baseline": 8.410569479179117,
+            "update50": 1.4902631063319731,
+            "update100": 0.10583747108386503
+          }
+        },
+        "new_false_walls": {
+          "cells": 280,
+          "nll_improvement_sum": -1136.3311023042625,
+          "mean_probability": {
+            "baseline": 0.057014450430870056,
+            "update50": 0.48602092266082764,
+            "update100": 0.8197419047355652
+          },
+          "mean_nll": {
+            "baseline": 0.06852272070375687,
+            "update50": 2.752104022776583,
+            "update100": 4.126848086076123
+          }
+        }
+      },
+      "missed_wall_distance": {
+        "total": 2376,
+        "within_one_pixel": 650,
+        "farther_than_one_pixel": 1726
+      },
+      "newly_missed_wall_distance": {
+        "total": 365,
+        "within_one_pixel": 223,
+        "farther_than_one_pixel": 142
+      },
+      "focus_windows": {
+        "newly_missed_walls": [
+          150,
+          72,
+          214,
+          136
+        ],
+        "probability_improvement": [
+          192,
+          0,
+          256,
+          64
+        ]
+      },
+      "representative_cells": {
+        "A": {
+          "crop_row": 227,
+          "crop_col": 14,
+          "occupied_target": 1,
+          "probabilities": {
+            "baseline": 9.978693429063025e-32,
+            "update50": 0.05290889605480068,
+            "update100": 0.357673806374576
+          },
+          "nll": {
+            "baseline": 71.38227081298828,
+            "update50": 2.9391837120056152,
+            "update100": 1.0281338691711426
+          }
+        },
+        "B": {
+          "crop_row": 182,
+          "crop_col": 104,
+          "occupied_target": 1,
+          "probabilities": {
+            "baseline": 0.9999947156814569,
+            "update50": 0.002122696452631646,
+            "update100": 0.000582464611707852
+          },
+          "nll": {
+            "baseline": 5.245195097813848e-06,
+            "update50": 6.1550679206848145,
+            "update100": 7.4482421875
+          }
+        }
+      },
+      "images": [
+        "50015847_t02_s04_overview.png",
+        "50015847_t02_s04_newly_missed_walls.png",
+        "50015847_t02_s04_probability_improvement.png"
+      ]
+    },
+    {
+      "sample_id": "50015848_t00_s04",
+      "map_id": "50015848",
+      "crop_origin": [
+        0,
+        1049
+      ],
+      "counts": {
+        "baseline": {
+          "tp": 2407,
+          "fp": 1206,
+          "fn": 2649,
+          "tn": 45781
+        },
+        "update50": {
+          "tp": 2312,
+          "fp": 938,
+          "fn": 2744,
+          "tn": 46049
+        },
+        "update100": {
+          "tp": 2269,
+          "fp": 893,
+          "fn": 2787,
+          "tn": 46094
+        }
+      },
+      "transitions": {
+        "walls_correct_both": {
+          "cells": 2222,
+          "nll_improvement_sum": -45.27537397149635,
+          "mean_probability": {
+            "baseline": 0.9947416186332703,
+            "update50": 0.9888165593147278,
+            "update100": 0.9773733615875244
+          },
+          "mean_nll": {
+            "baseline": 0.0061827522464267945,
+            "update50": 0.0131249520988746,
+            "update100": 0.026558708129188428
+          }
+        },
+        "walls_missed_both": {
+          "cells": 2602,
+          "nll_improvement_sum": 28362.498077571392,
+          "mean_probability": {
+            "baseline": 0.008826729841530323,
+            "update50": 0.010753009468317032,
+            "update100": 0.02959023416042328
+          },
+          "mean_nll": {
+            "baseline": 17.576560000700734,
+            "update50": 9.558459182544043,
+            "update100": 6.6762917157001995
+          }
+        },
+        "newly_missed_walls": {
+          "cells": 185,
+          "nll_improvement_sum": -660.8290228710072,
+          "mean_probability": {
+            "baseline": 0.9219891428947449,
+            "update50": 0.35716384649276733,
+            "update100": 0.1422766000032425
+          },
+          "mean_nll": {
+            "baseline": 0.09446667440007593,
+            "update50": 2.292700365585955,
+            "update100": 3.66651544667579
+          }
+        },
+        "recovered_walls": {
+          "cells": 47,
+          "nll_improvement_sum": 199.89230854002517,
+          "mean_probability": {
+            "baseline": 0.14336231350898743,
+            "update50": 0.5636569261550903,
+            "update100": 0.784329354763031
+          },
+          "mean_nll": {
+            "baseline": 4.523137171217736,
+            "update50": 0.9182328751097439,
+            "update100": 0.2701093299406044
+          }
+        },
+        "free_correct_both": {
+          "cells": 45701,
+          "nll_improvement_sum": -767.8522455446665,
+          "mean_probability": {
+            "baseline": 0.000602925312705338,
+            "update50": 0.0037282125558704138,
+            "update100": 0.016857581213116646
+          },
+          "mean_nll": {
+            "baseline": 0.0006779058559757265,
+            "update50": 0.0038536255236841545,
+            "update100": 0.0174795567070439
+          }
+        },
+        "false_walls_both": {
+          "cells": 813,
+          "nll_improvement_sum": 10608.372223377228,
+          "mean_probability": {
+            "baseline": 0.9922915697097778,
+            "update50": 0.983139157295227,
+            "update100": 0.9613346457481384
+          },
+          "mean_nll": {
+            "baseline": 28.21514519576217,
+            "update50": 21.345674189478892,
+            "update100": 15.166716876724989
+          }
+        },
+        "removed_false_walls": {
+          "cells": 393,
+          "nll_improvement_sum": 4038.4823193684406,
+          "mean_probability": {
+            "baseline": 0.9589509963989258,
+            "update50": 0.24579614400863647,
+            "update100": 0.07771890610456467
+          },
+          "mean_nll": {
+            "baseline": 10.368062933437697,
+            "update50": 0.845305536716477,
+            "update100": 0.09202649738568518
+          }
+        },
+        "new_false_walls": {
+          "cells": 80,
+          "nll_improvement_sum": -193.6726573941266,
+          "mean_probability": {
+            "baseline": 0.08225037157535553,
+            "update50": 0.5102705955505371,
+            "update100": 0.7861749529838562
+          },
+          "mean_nll": {
+            "baseline": 0.1002698999678648,
+            "update50": 1.7203294233069755,
+            "update100": 2.5211781173944474
+          }
+        }
+      },
+      "missed_wall_distance": {
+        "total": 2787,
+        "within_one_pixel": 1017,
+        "farther_than_one_pixel": 1770
+      },
+      "newly_missed_wall_distance": {
+        "total": 185,
+        "within_one_pixel": 111,
+        "farther_than_one_pixel": 74
+      },
+      "focus_windows": {
+        "newly_missed_walls": [
+          52,
+          156,
+          116,
+          220
+        ],
+        "probability_improvement": [
+          54,
+          192,
+          118,
+          256
+        ]
+      },
+      "representative_cells": {
+        "A": {
+          "crop_row": 86,
+          "crop_col": 249,
+          "occupied_target": 1,
+          "probabilities": {
+            "baseline": 5.950126154338611e-16,
+            "update50": 0.008461246578433581,
+            "update100": 0.10713797249434516
+          },
+          "nll": {
+            "baseline": 35.05794906616211,
+            "update50": 4.772258758544922,
+            "update100": 2.233637809753418
+          }
+        },
+        "B": {
+          "crop_row": 84,
+          "crop_col": 188,
+          "occupied_target": 1,
+          "probabilities": {
+            "baseline": 0.99986566186239,
+            "update50": 0.0717604364126272,
+            "update100": 9.806816571782589e-05
+          },
+          "nll": {
+            "baseline": 0.00013433984713628888,
+            "update50": 2.6344218254089355,
+            "update100": 9.22984790802002
+          }
+        }
+      },
+      "images": [
+        "50015848_t00_s04_overview.png",
+        "50015848_t00_s04_newly_missed_walls.png",
+        "50015848_t00_s04_probability_improvement.png"
+      ]
+    }
+  ],
+  "aggregate_transitions": {
+    "walls_correct_both": {
+      "cells": 4276,
+      "nll_improvement_sum": -92.95835598201828
+    },
+    "walls_missed_both": {
+      "cells": 4613,
+      "nll_improvement_sum": 72805.02116161585
+    },
+    "newly_missed_walls": {
+      "cells": 550,
+      "nll_improvement_sum": -1532.6473743262027
+    },
+    "recovered_walls": {
+      "cells": 75,
+      "nll_improvement_sum": 484.16537874710184
+    },
+    "free_correct_both": {
+      "cells": 74387,
+      "nll_improvement_sum": -1497.8266747550613
+    },
+    "false_walls_both": {
+      "cells": 1788,
+      "nll_improvement_sum": 26004.90595114231
+    },
+    "removed_false_walls": {
+      "cells": 751,
+      "nll_improvement_sum": 7011.576378266541
+    },
+    "new_false_walls": {
+      "cells": 360,
+      "nll_improvement_sum": -1330.003759698389
+    }
+  },
+  "update100_threshold_sweep": [
+    {
+      "threshold": 0.05,
+      "occupied_iou": 0.2709809400259455,
+      "tp": 5431,
+      "fp": 10528,
+      "fn": 4083
+    },
+    {
+      "threshold": 0.1,
+      "occupied_iou": 0.34586204496415396,
+      "tp": 4969,
+      "fp": 4853,
+      "fn": 4545
+    },
+    {
+      "threshold": 0.2,
+      "occupied_iou": 0.3740678373827279,
+      "tp": 4665,
+      "fp": 2957,
+      "fn": 4849
+    },
+    {
+      "threshold": 0.3,
+      "occupied_iou": 0.37546808687692435,
+      "tp": 4512,
+      "fp": 2503,
+      "fn": 5002
+    },
+    {
+      "threshold": 0.4,
+      "occupied_iou": 0.3742580973376293,
+      "tp": 4414,
+      "fp": 2280,
+      "fn": 5100
+    },
+    {
+      "threshold": 0.5,
+      "occupied_iou": 0.37309209398044935,
+      "tp": 4351,
+      "fp": 2148,
+      "fn": 5163
+    },
+    {
+      "threshold": 0.6,
+      "occupied_iou": 0.3701012198287049,
+      "tp": 4278,
+      "fp": 2045,
+      "fn": 5236
+    },
+    {
+      "threshold": 0.7,
+      "occupied_iou": 0.36688453159041395,
+      "tp": 4210,
+      "fp": 1961,
+      "fn": 5304
+    },
+    {
+      "threshold": 0.8,
+      "occupied_iou": 0.3625582008257929,
+      "tp": 4127,
+      "fp": 1869,
+      "fn": 5387
+    },
+    {
+      "threshold": 0.9,
+      "occupied_iou": 0.35249756011001687,
+      "tp": 3973,
+      "fp": 1757,
+      "fn": 5541
+    }
+  ],
+  "notes": [
+    "Ground truth is the KTH floor map, not a photograph of a real building.",
+    "Unknown cells only are counted; observed cells are composited exactly for display.",
+    "Zooms are selected to illustrate new missed-wall concentration and loss improvement, not randomly.",
+    "One-pixel proximity suggests a nearby prediction; it does not prove a rigid spatial shift."
+  ]
+}

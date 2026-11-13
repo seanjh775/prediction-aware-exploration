@@ -68,6 +68,13 @@ Next work:
    boundary F1 declined. All crops were verified fixed; checkpoints 50/100 are
    saved locally. The user wants to review these results before any full-scale
    experiment. Do not start that larger run automatically.
+   Validation prediction inspection is complete; see
+   `training_runs/prediction_inspection/README.md` for ground-truth/prediction
+   images at baseline/50/100. About 97% of net NLL improvement comes from cells
+   still misclassified at both endpoints becoming less confident. There are
+   475 more missed wall pixels and 391 fewer false wall pixels. A coarse cutoff
+   sweep does not recover baseline IoU. No additional training or test evaluation
+   was performed; broader validation is recommended before scaling up.
 2. Review `docs/pilot_review/README.md` for the pilot sample gallery and coverage
    results. Generation and validation are documented in `docs/masked_pilot.md`.
    The full NPZ dataset stays under `data/kth_masked_pilot_v1/` in the cloud,
