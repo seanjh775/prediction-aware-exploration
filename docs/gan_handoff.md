@@ -7,6 +7,12 @@ Probability variance/entropy supplies uncertainty; calibration remains unproven.
 See `probabilistic_lama.md`. The earlier latent WGAN code is retained but is not
 used by this baseline.
 
+Dataset policy: keep the fixed **10 training / 2 validation / 2 test source-map
+split** in `configs/critic_map_split.json`. All partials and crops inherit their
+map's split. Small experiments may use a subset of training maps; never move
+validation/test examples into training. Use validation for diagnostics and model
+selection, and reserve test maps for final evaluation.
+
 Implemented:
 
 - Optional latent conditioning for LaMa's FFC generator, with existing generator

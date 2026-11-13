@@ -1,0 +1,474 @@
+{
+  "policy": "Fixed 10 training / 2 validation / 2 test maps; diagnosis uses validation only.",
+  "checkpoints": [
+    10,
+    20
+  ],
+  "validation_cases": {
+    "weights10_stats10": {
+      "nll": 1.9096453355276137,
+      "cells": 249694
+    },
+    "weights20_stats20": {
+      "nll": 4.057058675239464,
+      "cells": 249694
+    },
+    "weights20_stats10": {
+      "nll": 1.8944157658423462,
+      "cells": 249694
+    },
+    "weights10_stats20": {
+      "nll": 4.049803724976012,
+      "cells": 249694
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "50015847_t03_s00",
+      "map_id": "50015847",
+      "crop_origin": [
+        174,
+        931
+      ],
+      "cells": 55035,
+      "nll10": 2.707967487819473,
+      "nll20": 2.891277289005837,
+      "loss_sum_change": 10088.454908291542,
+      "largest_worsened_error_regions": [
+        {
+          "cells": 165,
+          "loss_sum_increase": 4682.31450809819,
+          "crop_bounds": [
+            144,
+            52,
+            189,
+            56
+          ],
+          "processed_map_bounds": [
+            318,
+            983,
+            363,
+            987
+          ]
+        },
+        {
+          "cells": 172,
+          "loss_sum_increase": 3030.28194974878,
+          "crop_bounds": [
+            137,
+            107,
+            195,
+            122
+          ],
+          "processed_map_bounds": [
+            311,
+            1038,
+            369,
+            1053
+          ]
+        },
+        {
+          "cells": 220,
+          "loss_sum_increase": 2482.593103637566,
+          "crop_bounds": [
+            87,
+            112,
+            140,
+            141
+          ],
+          "processed_map_bounds": [
+            261,
+            1043,
+            314,
+            1072
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "50015847_t00_s02",
+      "map_id": "50015847",
+      "crop_origin": [
+        0,
+        0
+      ],
+      "cells": 48444,
+      "nll10": 2.8332776078676103,
+      "nll20": 3.264435528161602,
+      "loss_sum_change": 20887.014290722105,
+      "largest_worsened_error_regions": [
+        {
+          "cells": 1892,
+          "loss_sum_increase": 12173.257379055023,
+          "crop_bounds": [
+            0,
+            0,
+            255,
+            108
+          ],
+          "processed_map_bounds": [
+            0,
+            0,
+            255,
+            108
+          ]
+        },
+        {
+          "cells": 630,
+          "loss_sum_increase": 3894.761040210724,
+          "crop_bounds": [
+            144,
+            120,
+            232,
+            175
+          ],
+          "processed_map_bounds": [
+            144,
+            120,
+            232,
+            175
+          ]
+        },
+        {
+          "cells": 425,
+          "loss_sum_increase": 3620.246592286974,
+          "crop_bounds": [
+            84,
+            120,
+            141,
+            147
+          ],
+          "processed_map_bounds": [
+            84,
+            120,
+            141,
+            147
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "50015847_t02_s05",
+      "map_id": "50015847",
+      "crop_origin": [
+        0,
+        0
+      ],
+      "cells": 35154,
+      "nll10": 1.4732421033804455,
+      "nll20": 15.589721573000103,
+      "loss_sum_change": 496250.7192750095,
+      "largest_worsened_error_regions": [
+        {
+          "cells": 241,
+          "loss_sum_increase": 474647.48083496094,
+          "crop_bounds": [
+            0,
+            184,
+            13,
+            256
+          ],
+          "processed_map_bounds": [
+            0,
+            184,
+            13,
+            256
+          ]
+        },
+        {
+          "cells": 162,
+          "loss_sum_increase": 4414.98806622007,
+          "crop_bounds": [
+            0,
+            0,
+            62,
+            29
+          ],
+          "processed_map_bounds": [
+            0,
+            0,
+            62,
+            29
+          ]
+        },
+        {
+          "cells": 95,
+          "loss_sum_increase": 3157.766728401184,
+          "crop_bounds": [
+            60,
+            55,
+            62,
+            103
+          ],
+          "processed_map_bounds": [
+            60,
+            55,
+            62,
+            103
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "50015848_t02_s00",
+      "map_id": "50015848",
+      "crop_origin": [
+        105,
+        307
+      ],
+      "cells": 46762,
+      "nll10": 2.1576763464020043,
+      "nll20": 2.2610935011794893,
+      "loss_sum_change": 4835.992991704749,
+      "largest_worsened_error_regions": [
+        {
+          "cells": 323,
+          "loss_sum_increase": 3285.9675053833053,
+          "crop_bounds": [
+            154,
+            23,
+            196,
+            60
+          ],
+          "processed_map_bounds": [
+            259,
+            330,
+            301,
+            367
+          ]
+        },
+        {
+          "cells": 295,
+          "loss_sum_increase": 2054.2152061462402,
+          "crop_bounds": [
+            202,
+            32,
+            248,
+            59
+          ],
+          "processed_map_bounds": [
+            307,
+            339,
+            353,
+            366
+          ]
+        },
+        {
+          "cells": 88,
+          "loss_sum_increase": 1781.725309359536,
+          "crop_bounds": [
+            152,
+            84,
+            155,
+            115
+          ],
+          "processed_map_bounds": [
+            257,
+            391,
+            260,
+            422
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "50015848_t01_s01",
+      "map_id": "50015848",
+      "crop_origin": [
+        184,
+        520
+      ],
+      "cells": 35623,
+      "nll10": 0.7268623561150523,
+      "nll20": 0.7650424730809001,
+      "loss_sum_change": 1360.090306674393,
+      "largest_worsened_error_regions": [
+        {
+          "cells": 131,
+          "loss_sum_increase": 4336.947896780746,
+          "crop_bounds": [
+            209,
+            1,
+            253,
+            4
+          ],
+          "processed_map_bounds": [
+            393,
+            521,
+            437,
+            524
+          ]
+        },
+        {
+          "cells": 252,
+          "loss_sum_increase": 620.3721232414246,
+          "crop_bounds": [
+            0,
+            72,
+            42,
+            122
+          ],
+          "processed_map_bounds": [
+            184,
+            592,
+            226,
+            642
+          ]
+        },
+        {
+          "cells": 38,
+          "loss_sum_increase": 341.8842917829752,
+          "crop_bounds": [
+            215,
+            27,
+            253,
+            28
+          ],
+          "processed_map_bounds": [
+            399,
+            547,
+            437,
+            548
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": "50015848_t00_s04",
+      "map_id": "50015848",
+      "crop_origin": [
+        88,
+        641
+      ],
+      "cells": 28676,
+      "nll10": 0.41700583613389514,
+      "nll20": 0.5137402019313726,
+      "loss_sum_change": 2773.954673608467,
+      "largest_worsened_error_regions": [
+        {
+          "cells": 62,
+          "loss_sum_increase": 682.6254454983741,
+          "crop_bounds": [
+            51,
+            149,
+            55,
+            173
+          ],
+          "processed_map_bounds": [
+            139,
+            790,
+            143,
+            814
+          ]
+        },
+        {
+          "cells": 61,
+          "loss_sum_increase": 549.5849178973881,
+          "crop_bounds": [
+            23,
+            122,
+            27,
+            153
+          ],
+          "processed_map_bounds": [
+            111,
+            763,
+            115,
+            794
+          ]
+        },
+        {
+          "cells": 45,
+          "loss_sum_increase": 487.8762886058539,
+          "crop_bounds": [
+            54,
+            174,
+            79,
+            176
+          ],
+          "processed_map_bounds": [
+            142,
+            815,
+            167,
+            817
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": {
+    "occupied_targets": {
+      "cells": 35201,
+      "nll10": 10.966164609747917,
+      "nll20": 26.76226534562086,
+      "loss_sum_change": 556038.5420034636
+    },
+    "free_targets": {
+      "cells": 214493,
+      "nll10": 0.42335657565279794,
+      "nll20": 0.33084858911033355,
+      "loss_sum_change": -19842.315557452843
+    },
+    "wrong_at_both": {
+      "cells": 21142,
+      "nll10": 21.62384349531194,
+      "nll20": 46.656879889740644,
+      "loss_sum_change": 529248.4554510117
+    },
+    "new_errors": {
+      "cells": 1948,
+      "nll10": 0.08700294386855308,
+      "nll20": 13.398968729456348,
+      "loss_sum_change": 25931.70935032502
+    },
+    "corrected_errors": {
+      "cells": 1664,
+      "nll10": 11.434753558132797,
+      "nll20": 0.07323083717164079,
+      "loss_sum_change": -18905.573807679364
+    },
+    "correct_at_both": {
+      "cells": 224940,
+      "nll10": 0.0020395286563442026,
+      "nll20": 0.0016911488766403098,
+      "loss_sum_change": -78.36454764659376
+    }
+  },
+  "concentration": {
+    "0.01": {
+      "cells": 2497,
+      "loss_sum_increase": 532029.0180706645,
+      "fraction_of_positive_increase": 0.8901545845046601,
+      "fraction_of_net_increase": 0.9922282027179357
+    },
+    "0.05": {
+      "cells": 12485,
+      "loss_sum_increase": 590736.184443508,
+      "fraction_of_positive_increase": 0.98837940216512,
+      "fraction_of_net_increase": 1.1017164151993317
+    },
+    "0.1": {
+      "cells": 24970,
+      "loss_sum_increase": 597681.5828019676,
+      "fraction_of_positive_increase": 0.9999999679237583,
+      "fraction_of_net_increase": 1.1146695059073635
+    }
+  },
+  "batchnorm": {
+    "layers": 152,
+    "momenta": [
+      0.1
+    ],
+    "epsilons": [
+      1e-05
+    ],
+    "counter_differences": [
+      10
+    ]
+  },
+  "limitations": [
+    "No weights were optimized and no test examples were loaded.",
+    "Swapping BN running buffers is an evaluation diagnostic, not a trained replacement model.",
+    "Coordinates refer to processed occupancy arrays, with bounds end-exclusive."
+  ]
+}

@@ -27,6 +27,7 @@ class OccupancyDataset(Dataset):
         with np.load(str(self.root/record['file'])) as data:
             arrays = {key: data[key].astype(np.float32) for key in
                       ['observation', 'unknown_mask', 'ground_truth']}
+        top, left = 0, 0
         if self.crop_size:
             rng = np.random.RandomState((self.seed + self.epoch*len(self) + index) % (2**32))
             unknown = np.argwhere(arrays['unknown_mask'] > 0)
@@ -39,7 +40,7 @@ class OccupancyDataset(Dataset):
             arrays = {key: value[top:top+self.crop_size, left:left+self.crop_size]
                       for key, value in arrays.items()}
         sample = {key: torch.from_numpy(np.ascontiguousarray(value))[None] for key, value in arrays.items()}
-        sample.update(map_id=record['map_id'], sample_id=record['sample_id'])
+        sample.update(map_id=record['map_id'], sample_id=record['sample_id'], crop_origin=(top,left))
         return sample
 
 
@@ -50,7 +51,8 @@ def collate_occupancy(samples):
     shape = (len(samples), 1, height, width)
     batch = dict(observation=torch.zeros(shape), unknown_mask=torch.zeros(shape),
                  ground_truth=torch.zeros(shape), image_mask=torch.zeros(shape),
-                 map_id=[s['map_id'] for s in samples], sample_id=[s['sample_id'] for s in samples])
+                 map_id=[s['map_id'] for s in samples], sample_id=[s['sample_id'] for s in samples],
+                 crop_origin=[s.get('crop_origin',(0,0)) for s in samples])
     for index, sample in enumerate(samples):
         h, w = sample['observation'].shape[-2:]
         for key in ['observation', 'unknown_mask', 'ground_truth']:
