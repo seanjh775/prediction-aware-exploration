@@ -40,10 +40,20 @@ def to_device(batch, device):
     return {key: value.to(device) if torch.is_tensor(value) else value for key, value in batch.items()}
 
 
+def set_training_mode(model, freeze_bn_stats=False):
+    model.train()
+    if freeze_bn_stats:
+        for module in model.modules():
+            if isinstance(module,torch.nn.modules.batchnorm._BatchNorm):
+                # eval controls running buffers and which statistics are used;
+                # affine scale/bias retain gradients and optimizer updates.
+                module.eval()
+
+
 @torch.no_grad()
-def evaluate(model, loader, device, limit=0):
+def evaluate(model, loader, device, limit=0, boundary_tolerance=1.):
     model.eval()
-    total, by_map, by_coverage = OccupancyMetrics(), {}, {}
+    total, by_map, by_coverage = OccupancyMetrics(boundary_tolerance=boundary_tolerance), {}, {}
     for index, batch in enumerate(loader):
         if limit and index >= limit:
             break
@@ -53,12 +63,12 @@ def evaluate(model, loader, device, limit=0):
         total.update(*args)
         for item, map_id in enumerate(batch['map_id']):
             item_args = tuple(value[item:item+1] for value in args)
-            by_map.setdefault(map_id, OccupancyMetrics()).update(*item_args)
+            by_map.setdefault(map_id, OccupancyMetrics(boundary_tolerance=boundary_tolerance)).update(*item_args)
             real = batch['image_mask'][item].sum().item()
             observed = 1-(batch['unknown_mask'][item]*batch['image_mask'][item]).sum().item()/real
             bucket = min(3, int(observed*4))
             label = '{}-{}% observed image cells'.format(bucket*25, (bucket+1)*25)
-            by_coverage.setdefault(label, OccupancyMetrics()).update(*item_args)
+            by_coverage.setdefault(label, OccupancyMetrics(boundary_tolerance=boundary_tolerance)).update(*item_args)
     if not total.count:
         raise ValueError('Validation contains no eligible cells')
     return dict(global_metrics=total.compute(),
@@ -76,6 +86,8 @@ def main():
     parser.add_argument('--batch-size', type=int, default=1)
     parser.add_argument('--crop-size', type=int, default=256)
     parser.add_argument('--lr', type=float, default=1e-5)
+    parser.add_argument('--freeze-bn-stats', action='store_true', help='Keep pretrained BatchNorm statistics fixed; affine parameters still train')
+    parser.add_argument('--boundary-tolerance-pixels', type=float, default=1.)
     parser.add_argument('--train-maps', nargs='+', help='Optional subset of original training-map IDs')
     parser.add_argument('--validation-samples-per-map', type=int, default=0,
                         help='0 uses all; otherwise take fixed coverage-spaced examples per held-out map')
@@ -88,6 +100,8 @@ def main():
     args = parser.parse_args()
     if min(args.steps, args.batch_size, args.crop_size, args.validate_every) < 1 or args.lr <= 0:
         raise ValueError('Steps, batch size, crop size, validation interval, and learning rate must be positive')
+    if args.boundary_tolerance_pixels < 0:
+        raise ValueError('Boundary tolerance must be nonnegative')
     if args.output.exists():
         raise ValueError('Use a new output directory to preserve existing runs')
     random.seed(args.seed); np.random.seed(args.seed); torch.manual_seed(args.seed)
@@ -110,7 +124,7 @@ def main():
                          validation_sample_ids=[r['sample_id'] for r in validation.records])
     (args.output/'config.json').write_text(json.dumps(configuration, indent=2)+'\n')
     started = time.perf_counter()
-    baseline = evaluate(model, validation_loader, device, args.validation_limit)
+    baseline = evaluate(model, validation_loader, device, args.validation_limit,args.boundary_tolerance_pixels)
     (args.output/'baseline.json').write_text(json.dumps(baseline, indent=2)+'\n')
     print(json.dumps(dict(step=0, validation=baseline['global_metrics'],
                          baseline_seconds=time.perf_counter()-started)), flush=True)
@@ -125,7 +139,7 @@ def main():
             loader = DataLoader(train, batch_size=args.batch_size, shuffle=True, generator=order_rng,
                                 collate_fn=collate_occupancy, num_workers=0)
             for batch in loader:
-                model.train()
+                set_training_mode(model,args.freeze_bn_stats)
                 batch = to_device(batch, device)
                 optimizer.zero_grad(set_to_none=True)
                 step_started = time.perf_counter()
@@ -140,7 +154,7 @@ def main():
                 record = dict(step=step, epoch=epoch, train_nll=loss.item(), sample_ids=batch['sample_id'],
                               train_seconds=time.perf_counter()-step_started)
                 if step % args.validate_every == 0 or step == args.steps:
-                    record['validation'] = evaluate(model, validation_loader, device, args.validation_limit)
+                    record['validation'] = evaluate(model, validation_loader, device, args.validation_limit,args.boundary_tolerance_pixels)
                     checkpoint = dict(step=step, epoch=epoch, model=model.state_dict(),
                                       optimizer=optimizer.state_dict(), configuration=configuration,
                                       validation=record['validation'], torch_rng_state=torch.get_rng_state())

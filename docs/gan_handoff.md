@@ -56,6 +56,12 @@ Next work:
    validation NLL worsened later. Investigate stability and expand held-out
    validation before a longer run or final test evaluation. The input/head
    encoding was corrected to occupied=1/free=0; use checkpoint encoding version 2.
+   A matched 20-update fixed-BatchNorm-statistics run is now complete; see
+   `training_runs/frozen_bn_run.md`. NLL decreased from 2.097 to 1.624 without
+   the previous spike. All running buffers stayed unchanged; affine parameters
+   trained. One-pixel-tolerant boundary precision/recall/F1 are evaluation-only.
+   Compare all metrics: Brier and ECE remain worse than the earlier best, and
+   full-map validation/calibrated uncertainty are not yet established.
 2. Review `docs/pilot_review/README.md` for the pilot sample gallery and coverage
    results. Generation and validation are documented in `docs/masked_pilot.md`.
    The full NPZ dataset stays under `data/kth_masked_pilot_v1/` in the cloud,

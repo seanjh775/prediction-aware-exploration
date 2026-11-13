@@ -48,7 +48,7 @@ From the repository root, with the existing project Python environment:
 ```bash
 PYTHONPATH=.:lama python scripts/train_probabilistic_lama.py \
   --output work/probabilistic_run_01 \
-  --steps 1000 --crop-size 256 --batch-size 1 --lr 0.00001
+  --steps 1000 --crop-size 256 --batch-size 1 --lr 0.00001 --freeze-bn-stats
 ```
 
 CUDA is selected when available; otherwise CPU is used. Big LaMa is substantial,
@@ -112,3 +112,29 @@ PYTHONPATH=.:lama python -m unittest discover -s tests -v
 Encoding correction: checkpoint format version 2 uses direct occupancy inputs
 and a positive mean output head. Earlier smoke checkpoints used an inverted
 encoding and must not be resumed; the inference loader rejects those checkpoints.
+
+## Fixed BatchNorm statistics and spatial tolerance
+
+Use `--freeze-bn-stats` to put only BatchNorm modules into evaluation mode after
+every `model.train()` call. Their pretrained running means, running variances,
+and batch counters stay fixed, while learned affine scale/bias and the rest of
+the network still train. The flag remains optional for controlled comparisons;
+the default without it reproduces the original updating-statistics behavior.
+
+Validation additionally reports micro-averaged boundary precision, recall, and
+F1 with `--boundary-tolerance-pixels 1` (the default). Occupancy is thresholded
+at 0.5. Boundaries are occupied cells adjacent to free space under four-neighbor
+erosion. A match is within Euclidean distance 1 pixel, about 0.1 m at the configured
+scale. Diagonal distance sqrt(2) exceeds that tolerance. Matching uses nearest
+boundaries, not a one-to-one assignment.
+
+Boundaries are extracted before masking so unknown-mask edges are not invented
+wall edges. Only unknown real-image boundary cells are scored, and pixels without
+a full real-image neighborhood are excluded to avoid artificial padding/crop
+perimeters. Known neighbors use their exact observed labels. If both boundary
+sets are empty the three scores are null; if just one is empty they are zero.
+Counts accumulate across examples rather than averaging per-image F1.
+
+This metric never changes the BCE loss, target labels, gradient computation,
+or checkpoint selection by NLL. Exact IoU and probability metrics remain available.
+See `training_runs/frozen_bn_run.md` for the controlled 20-update comparison.
